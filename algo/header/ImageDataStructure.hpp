@@ -17,6 +17,12 @@ struct Image
         pixels = new unsigned[width*height];
         for (unsigned i = 0; i < w*h; i++) pixels[i] = *(list.begin() + i);
     }
+    Image(std::vector<unsigned> vect, unsigned w, unsigned h){
+        width = w; height = h;
+        if (pixels != NULL) delete[] pixels;
+        pixels = new unsigned[width*height];
+        for (unsigned i = 0; i < w*h; i++) pixels[i] = vect.at(i);
+    }
     Image(){
         width = 0; height = 0;
         if (pixels != NULL) delete[] pixels;
