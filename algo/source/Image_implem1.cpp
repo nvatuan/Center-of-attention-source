@@ -49,6 +49,18 @@ std::vector<unsigned> Image::central_pixels (unsigned colour) const {
             indexes.push_back(ind);
     // -- dump result to screen
     /*
+    std::cout << "==== RESULT DUMP ====== : " << std::endl;
+    std::cout << "colour = " << colour << std::endl;
+    std::cout << "image.height = " << this->height << std::endl;
+    std::cout << "image.width = " << this->width << std::endl;
+
+    std::cout << "image = " << std::endl;
+    for (int x = 0; x < height; x++) {
+        for (int y = 0; y < width; y++) {
+            std::cout << this->pixels[pair_to_imgidx(x, y)] << ' ';
+        }
+        std::cout << std::endl;
+    }
     for (int x = 0; x < height; x++) {
         for (int y = 0; y < width; y++) 
         {

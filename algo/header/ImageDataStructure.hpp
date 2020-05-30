@@ -11,23 +11,32 @@ struct Image
 
     std::vector<unsigned> central_pixels (unsigned colour) const;
     // other functions ...
-    Image(std::initializer_list<unsigned> list, unsigned w, unsigned h){
+    Image(std::initializer_list<unsigned> list, unsigned w, unsigned h) {
         width = w; height = h;
         if (pixels != NULL) delete[] pixels;
         pixels = new unsigned[width*height];
         for (unsigned i = 0; i < w*h; i++) pixels[i] = *(list.begin() + i);
     }
-    Image(std::vector<unsigned> vect, unsigned w, unsigned h){
+    Image(std::vector<unsigned> vect, unsigned w, unsigned h) {
         width = w; height = h;
         if (pixels != NULL) delete[] pixels;
         pixels = new unsigned[width*height];
         for (unsigned i = 0; i < w*h; i++) pixels[i] = vect.at(i);
     }
-    Image(){
+    Image() {
         width = 0; height = 0;
         if (pixels != NULL) delete[] pixels;
     }
-
+    //
+    void operator=(const Image& img) {
+        //std::cout << "overloaded operator= is called" << std::endl;
+        this->width = img.width;
+        this->height = img.height;
+        //
+        delete[] this->pixels;
+        this->pixels = new unsigned[this->width * this->height];
+        for (int i = 0; i < this->width * this->height; i++) *(this->pixels + i) = *(img.pixels + i);
+    }
     unsigned pair_to_imgidx (unsigned first, unsigned second) const {
         return first * width + second;
     }
