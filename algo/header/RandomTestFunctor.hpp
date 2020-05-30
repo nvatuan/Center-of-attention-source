@@ -4,39 +4,48 @@
 
 #include <vector>
 #include <queue>
-#include <cstdlib>
-#include <ctime>
+
+#include <chrono>
+#include <random>
 
 struct rnd_test_functor {
     // -- Randomize related --
-    static bool _set_srand_seed;
+    static bool _init_random_seed;
     static int  _test_count;
+    static unsigned seed_value;
+    static std::mt19937 rnd_gen;
 
-    static void set_srand_seed() {
-        std::srand(std::time(NULL));
-        _set_srand_seed = true;
+    static void init_random_seed() {
+        _init_random_seed = true;
+        seed_value = std::chrono::system_clock::now().time_since_epoch().count();
+        rnd_gen.seed(seed_value);
     }
+
     static int getRandomInt(int a, int b) {
         if (b - a == 0) return 0;
-        return (std::rand() % (b - a) + a);
-        // -- NOTE: RAND_MAX can't reaches 10**6, use C++ mt1997 instead
+        return (rnd_gen() % (b - a) + a);
     }
 
     // -- generator
-    static void image_generate(unsigned _bound_w, unsigned _bound_h, unsigned& image_colours, Image& img) {
+    static void image_generate(unsigned _bound_w, unsigned _bound_h, unsigned& image_colours, Image& img, const bool& __maximize_w_h) {
         // -- initialize
         unsigned w; 
-        if (_bound_w) w = getRandomInt(1, _bound_w);
-        else w = getRandomInt(1, RAND_MAX);
-
         unsigned h; 
-        if (_bound_h) h = getRandomInt(1, _bound_h); 
-        else h = getRandomInt(1, RAND_MAX);
+        if (__maximize_w_h) {
+            w = _bound_w;
+            h = _bound_h;
+        } else {
+            if (_bound_w) w = getRandomInt(1, _bound_w);
+            else w = getRandomInt(1, 16000000);
+            if (_bound_h) h = getRandomInt(1, _bound_h); 
+            else h = getRandomInt(1, 16000000 / w);
+        }
 
         unsigned colours = 0;
 
         std::vector<std::vector<unsigned>> _2d_map (h, std::vector<unsigned> (w, 0));
         std::vector<std::vector<int>> _2d_map_visisted (h, std::vector<int> (w, 0));
+
         // -- generating
         auto drunkwalk = [&](unsigned x, unsigned y) -> void {
             unsigned colour = colours++; 
@@ -93,15 +102,14 @@ struct rnd_test_functor {
     // -- constructor
     rnd_test_functor() {}
     // -- function
-    TestData operator()(int _bound_w = 0, int _bound_h = 0) {
-        if (!_set_srand_seed) set_srand_seed();
-        // -- 
+    TestData operator()(int _bound_w = 0, int _bound_h = 0, const bool& __maximize_w_h = false) {
+        if (!_init_random_seed) init_random_seed();
         TestData td;
         td.test_index = _test_count++;
         
         // -- generate image
         unsigned image_colours;
-        image_generate(_bound_w, _bound_h, image_colours, td.img);
+        image_generate(_bound_w, _bound_h, image_colours, td.img, __maximize_w_h);
         
         // -- generate test input
         td.subtest_input.clear();
@@ -128,5 +136,7 @@ struct rnd_test_functor {
         return td;
     }
 };
-bool rnd_test_functor::_set_srand_seed = false;
+bool rnd_test_functor::_init_random_seed = false;
+unsigned rnd_test_functor::seed_value = 0;
 int rnd_test_functor::_test_count = 0;
+std::mt19937 rnd_test_functor::rnd_gen (0);
