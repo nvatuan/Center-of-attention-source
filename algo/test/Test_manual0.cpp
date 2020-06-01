@@ -23,7 +23,6 @@ std::vector<TestData> get_test_data_vector() {
 #include <fstream>
 
 #include "../header/ExportTestDataToFile.hpp"
-
 // --
 TestData man0_test1() {
     TestData td;

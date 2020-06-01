@@ -1,13 +1,22 @@
 #pragma once 
+#include <stdexcept>
+#include <direct.h>
 
-void export_to_files() {
+std::string output_folder ("./test/export/");
+
+void export_to_files(std::string folder) {
+    output_folder += folder;
+    std::cerr << "Output folder> " << output_folder << std::endl;
+    int status = _mkdir(output_folder.c_str()); 
+    if ( (status < 0) && (errno != EEXIST) ) throw new std::invalid_argument(output_folder);
+
     std::vector<TestData> test_data_vector = get_test_data_vector();
     for (int i = 0; i < test_data_vector.size(); i++) {
-        std::ofstream in_file ( std::string("../test/export/in") + std::to_string(i) + std::string(".txt"), std::ofstream::out | std::ofstream::trunc);
-        std::ofstream out_file ( std::string("../test/export/out") + std::to_string(i) + std::string(".txt"), std::ofstream::out | std::ofstream::trunc);
+        std::ofstream in_file ( output_folder + std::string("in") + std::to_string(i) + std::string(".txt"), std::ofstream::out | std::ofstream::trunc);
+        std::ofstream out_file ( output_folder + std::string("out") + std::to_string(i) + std::string(".txt"), std::ofstream::out | std::ofstream::trunc);
         std::cerr << "     Attempting to Write file#" << i << std::endl;
-        std::cerr << "../test/export/in" << i << ".txt is " << (in_file.is_open() ? "open." : "closed." ) << std::endl;
-        std::cerr << "../test/export/out" << i << ".txt is " << (in_file.is_open() ? "open." : "closed." ) << std::endl;
+        std::cerr << output_folder << "in" << i << ".txt is " << (in_file.is_open() ? "open." : "closed." ) << std::endl;
+        std::cerr << output_folder << "out" << i << ".txt is " << (in_file.is_open() ? "open." : "closed." ) << std::endl;
         //
         const TestData& test = test_data_vector.at(i);
         // -- Write input file
@@ -15,7 +24,7 @@ void export_to_files() {
         in_file << test.img.width << ' ' << test.img.height << std::endl;
 
         for (unsigned pixel = 0; pixel < test.img.width * test.img.height; pixel++) {
-            in_file << pixel;
+            in_file << test.img.pixels[pixel];
             if (pixel + 1 < test.img.width * test.img.height) in_file << ' ';
             else in_file << std::endl;
         }
