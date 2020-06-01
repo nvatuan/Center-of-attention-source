@@ -107,8 +107,10 @@ struct rnd_test_functor {
         TestData td;
         td.test_index = _test_count++;
         
+        std::cout << "Generating test#" << td.test_index << std::endl;
         // -- generate image
         unsigned image_colours;
+        std::cout << "Generating image.." << std::endl;
         image_generate(_bound_w, _bound_h, image_colours, td.img, __maximize_w_h);
         
         // -- generate test input
@@ -122,6 +124,7 @@ struct rnd_test_functor {
         td.subtest_juryans.clear();
         td.subtest_juryans.resize(td.subtest_input.size());
 
+        std::cout << "Generating results.." << std::endl;
         for (unsigned test = 0; test < td.subtest_input.size(); test++) {
             td.subtest_juryans.at(test) = td.img.central_pixels(td.subtest_input.at(test));
             // -- DEBUGING

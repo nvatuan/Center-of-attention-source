@@ -11,11 +11,11 @@ std::vector<TestData> get_test_data_vector() {
 
     // -- stress test
     std::cout << "Generating stress tests..." << std::endl;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 1; i++)
         _TestDataVec.push_back(rndtest(4000, 4000, true));
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 1; i++)
         _TestDataVec.push_back(rndtest(16000000, 1, true));
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 1; i++)
         _TestDataVec.push_back(rndtest(1, 16000000, true));
     std::cout << "Finished generating tests." << std::endl;
 
