@@ -27,7 +27,24 @@ struct rnd_test_functor {
     }
 
     // -- generator
-    static void image_generate(unsigned _bound_w, unsigned _bound_h, unsigned& image_colours, Image& img, const bool& __maximize_w_h) {
+    static enum IMAGE_PATTERN : int {
+        RANDOMLY_SPREAD = 0, SIMPLE_COLOURED = 1, SPIRAL = 2, MONOCHROME = 3
+    };
+
+    static unsigned TOTAL_COLOURS = 0;
+    static unsigned getNextColour(const int& img_patt) {
+        static bool init = false;
+        if (not init) {
+            init = true;
+            switch (img_patt) {
+
+            }
+        }
+    }
+
+    static void image_generate(unsigned _bound_w, unsigned _bound_h, unsigned& image_colours, Image& img,
+        const bool& __maximize_w_h, int img_patt = 0 
+    ) { 
         // -- initialize
         unsigned w; 
         unsigned h; 
@@ -41,7 +58,6 @@ struct rnd_test_functor {
             else h = getRandomInt(1, 16000000 / w);
         }
 
-        unsigned colours = 0;
 
         std::vector<std::vector<unsigned>> _2d_map (h, std::vector<unsigned> (w, 0));
         std::vector<std::vector<int>> _2d_map_visisted (h, std::vector<int> (w, 0));

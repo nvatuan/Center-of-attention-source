@@ -1,0 +1,78 @@
+Generating medium-size tests...
+Generating test#0
+Generating image..
+Generating results..
+Generating test#1
+Generating image..
+Generating results..
+Generating test#2
+Generating image..
+Generating results..
+Generating test#3
+Generating image..
+Generating results..
+Generating test#4
+Generating image..
+Generating results..
+Generating test#5
+Generating image..
+Generating results..
+Generating test#6
+Generating image..
+Generating results..
+Generating test#7
+Generating image..
+Generating results..
+Generating test#8
+Generating image..
+Generating results..
+Generating test#9
+Generating image..
+Generating results..
+Finished generating tests.
+@Test1
+Correct: 4176 subtest(s) out of 4176
+Test Executed time: 10.2500s
+Test Average Executed time: 0.0025s
+@Test2
+Correct: 4064 subtest(s) out of 4064
+Test Executed time: 8.5480s
+Test Average Executed time: 0.0021s
+@Test3
+Correct: 4207 subtest(s) out of 4207
+Test Executed time: 10.4240s
+Test Average Executed time: 0.0025s
+@Test4
+Correct: 4172 subtest(s) out of 4172
+Test Executed time: 10.4370s
+Test Average Executed time: 0.0025s
+@Test5
+Correct: 3965 subtest(s) out of 3965
+Test Executed time: 11.4140s
+Test Average Executed time: 0.0029s
+@Test6
+Correct: 4177 subtest(s) out of 4177
+Test Executed time: 7.3830s
+Test Average Executed time: 0.0018s
+@Test7
+Correct: 4071 subtest(s) out of 4071
+Test Executed time: 12.8300s
+Test Average Executed time: 0.0032s
+@Test8
+Correct: 4115 subtest(s) out of 4115
+Test Executed time: 9.8800s
+Test Average Executed time: 0.0024s
+@Test9
+Correct: 4082 subtest(s) out of 4082
+Test Executed time: 6.8480s
+Test Average Executed time: 0.0017s
+@Test10
+Correct: 4105 subtest(s) out of 4105
+Test Executed time: 9.8210s
+Test Average Executed time: 0.0024s
+
+10 test(s) ran.
+Total test(s): 41134
+Total correct(s): 41134
+Total Executed time: 97.8300s
+Total Average Executed time: 0.0024s
