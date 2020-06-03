@@ -39,8 +39,8 @@ void export_to_files(std::string folder) {
             for (unsigned i = 0; i < juryans.size(); i++) {
                 out_file << juryans.at(i);
                 if (i + 1 < juryans.size()) out_file << ' ';
-                else out_file << std::endl;
             }
+            out_file << std::endl;
         }
 
         out_file.close();
