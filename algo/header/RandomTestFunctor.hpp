@@ -8,6 +8,8 @@
 #include <chrono>
 #include <random>
 
+#include <cassert>
+
 struct rnd_test_functor {
     // -- Randomize related --
     static bool _init_random_seed;
@@ -27,25 +29,42 @@ struct rnd_test_functor {
     }
 
     // -- generator
-    static enum IMAGE_PATTERN : int {
+    enum IMAGE_PATTERN : int {
         RANDOMLY_SPREAD = 0, SIMPLE_COLOURED = 1, SPIRAL = 2, MONOCHROME = 3
     };
 
-    static unsigned TOTAL_COLOURS = 0;
-    static unsigned getNextColour(const int& img_patt) {
-        static bool init = false;
-        if (not init) {
-            init = true;
-            switch (img_patt) {
-
+    unsigned TOTAL_COLOURS;
+    bool _getNextColour_init = false;
+    unsigned getNextColour(const int& H, const int& W, const int& img_patt) {
+        if (not _getNextColour_init) {
+            _getNextColour_init = true;
+            switch ( IMAGE_PATTERN(img_patt) ) {
+                case RANDOMLY_SPREAD:
+                    TOTAL_COLOURS = getRandomInt(H*W/2 + 1, H*W);
+                    break;
+                case SIMPLE_COLOURED:
+                    TOTAL_COLOURS = getRandomInt( (H+W)/4, (H+W)/2);
+                    break;
+                case SPIRAL:
+                    TOTAL_COLOURS = 2;
+                    break;
+                case MONOCHROME:
+                    TOTAL_COLOURS = 1;
+                    break;
+                default:
+                    assert("IMAGE_PATTERN NOT RECOGNIZED" == "!");
             }
         }
+        // --
+        return getRandomInt(0, TOTAL_COLOURS - 1);
     }
 
-    static void image_generate(unsigned _bound_w, unsigned _bound_h, unsigned& image_colours, Image& img,
+    void image_generate(unsigned _bound_w, unsigned _bound_h, unsigned& image_colours, Image& img,
         const bool& __maximize_w_h, int img_patt = 0 
     ) { 
         // -- initialize
+        _getNextColour_init = false;
+
         unsigned w; 
         unsigned h; 
         if (__maximize_w_h) {
@@ -64,7 +83,7 @@ struct rnd_test_functor {
 
         // -- generating
         auto drunkwalk = [&](unsigned x, unsigned y) -> void {
-            unsigned colour = colours++; 
+            unsigned colour = getNextColour(h, w, img_patt); 
             unsigned steps  = getRandomInt(1, w*h);
             std::queue< std::pair<int, int> > Q;
             Q.push( std::make_pair(x, y) );
@@ -92,11 +111,50 @@ struct rnd_test_functor {
                     Q.push( std::make_pair(subx, suby + 1) );
             }
         };
-        
-        for (unsigned hi = 0; hi < h; hi++)
-            for (unsigned wi = 0; wi < w; wi++)
-                if (_2d_map_visisted.at(hi).at(wi) == 0)
-                    drunkwalk(hi, wi);
+
+        auto spiraling = [&]() -> void {
+            unsigned col = 1;
+            // --
+            int x1 = -1, y1 = 0;
+            int dx = 1, dy = 1;
+
+            int dW = w;
+            int dH = h - 2;
+
+            int turn = 1;
+            while (dW > 0 or dH > 0) {
+                if (turn) {
+                    for (int i = 0; i < dW; i++) {
+                        x1 += dx;
+                        _2d_map[x1][y1] = col;
+                    }
+                    turn ^= 1; dW -= 2; dx *= -1;
+                } else {
+                    for (int i = 0; i < dH; i++) {
+                        y1 += dy;
+                        _2d_map[x1][y1] = col;
+                    }
+                    turn ^= 1; dH -= 2; dy *= -1;
+                }
+            }
+
+        };
+
+        switch ( IMAGE_PATTERN(img_patt) ) {
+            case RANDOMLY_SPREAD:
+            case SIMPLE_COLOURED:
+            case MONOCHROME:
+                for (unsigned hi = 0; hi < h; hi++)
+                    for (unsigned wi = 0; wi < w; wi++)
+                        if (_2d_map_visisted.at(hi).at(wi) == 0)
+                            drunkwalk(hi, wi);
+                break;
+            case SPIRAL:
+                spiraling();
+                break;
+            default:
+                assert("IMAGE_PATTERN NOT RECOGNIZED" == "!");
+        }
 
         /*
         std::cout << "DUMP MAP: " << std::endl;
@@ -104,8 +162,9 @@ struct rnd_test_functor {
             for (unsigned wi = 0; wi < w; wi++)
                 std::cout << _2d_map.at(hi).at(wi) << ' ';
         */
+
         // -- convert data
-        image_colours = colours;
+        image_colours = TOTAL_COLOURS;
         
         delete[] img.pixels;
         img.pixels = new unsigned[h*w];
@@ -118,7 +177,7 @@ struct rnd_test_functor {
     // -- constructor
     rnd_test_functor() {}
     // -- function
-    TestData operator()(int _bound_w = 0, int _bound_h = 0, const bool& __maximize_w_h = false) {
+    TestData operator()(int _bound_w = 0, int _bound_h = 0, const bool& __maximize_w_h = false, int img_patt = 0) {
         if (!_init_random_seed) init_random_seed();
         TestData td;
         td.test_index = _test_count++;
@@ -127,7 +186,7 @@ struct rnd_test_functor {
         // -- generate image
         unsigned image_colours;
         std::cout << "Generating image.." << std::endl;
-        image_generate(_bound_w, _bound_h, image_colours, td.img, __maximize_w_h);
+        image_generate(_bound_w, _bound_h, image_colours, td.img, __maximize_w_h, img_patt);
         
         // -- generate test input
         td.subtest_input.clear();
