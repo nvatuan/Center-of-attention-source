@@ -33,7 +33,7 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         Button.to_vien();
         JPanel pnl_nishi = new JPanel();
         pnl_nishi.setBorder(BorderFactory.createTitledBorder("Function"));
-        pnl_nishi.setBackground(Color.lightGray);
+        pnl_nishi.setBackground(Color.LIGHT_GRAY);
         pnl_nishi.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.ipady = 15;
@@ -54,7 +54,7 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         pnl_nishi.add(History,c);
         //
         JButton About = new JButton("About us");
-        c.weighty = 1;
+        c.weighty = 0.5;
         c.anchor = GridBagConstraints.LAST_LINE_END;
         c.gridx = 0;
         c.gridy = 3;
@@ -68,14 +68,69 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         Label.can_chinh();
         TextField.to_vien();
         JPanel pnl_higashi = new JPanel();
-        pnl_higashi.setLayout(new GridLayout(4, 1, 10, 10));
-        //cách lề panel khỏi khung Frame
-        pnl_higashi.setBorder(new EmptyBorder(15, 0, 20, 10));
-        //set image backgroud
-        pnl_higashi.add(lb_input);
-        pnl_higashi.add(jt_input);
-        pnl_higashi.add(lb_output);
-        pnl_higashi.add(jt_output);
+        pnl_higashi.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.weightx = 1;
+        c.weighty = 0;
+
+        c.ipadx = 10;
+        c.ipady = 10;
+        c.insets = new Insets(10,0,0,0);
+        c.fill = GridBagConstraints.VERTICAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+
+        pnl_higashi.add(lb_input,c);
+
+
+        JLabel lb_question1 = new JLabel("?");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        pnl_higashi.add(lb_question1,c);
+
+        c.insets = new Insets(0,0,150,0);
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 2;
+        c.gridheight = 1;
+        c.ipadx = 120;
+        c.ipady = 100;
+        pnl_higashi.add(tf_input,c);
+
+
+        c.insets = new Insets(0,0,0,0);
+        c.ipadx = 10;
+        c.ipady = 10;
+        c.fill = GridBagConstraints.VERTICAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        pnl_higashi.add(lb_output,c);
+
+
+        JLabel lb_question2 = new JLabel("?");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 2;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        pnl_higashi.add(lb_question2,c);
+
+        c.gridx = 0;
+        c.gridy = 3;
+        c.gridwidth = 2;
+        c.gridheight = 1;
+        c.ipadx = 120;
+        c.ipady = 100;
+        pnl_higashi.add(tf_output,c);
+
 
         return pnl_higashi;
     }

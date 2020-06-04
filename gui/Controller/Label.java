@@ -11,10 +11,10 @@ public class Label extends TextField{
 
     static void can_chinh()
     {
-        lb_input.setFont(new Font("Arial", Font.BOLD,20));
+        lb_input.setFont(new Font("Arial", Font.BOLD,15));
         lb_input.setHorizontalAlignment(JLabel.CENTER);
 
-        lb_output.setFont(new Font("Arial", Font.BOLD,20));
+        lb_output.setFont(new Font("Arial", Font.BOLD,15));
         lb_output.setHorizontalAlignment(JLabel.CENTER);
 
     }
