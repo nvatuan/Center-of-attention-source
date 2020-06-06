@@ -10,15 +10,17 @@ std::vector<TestData> get_test_data_vector() {
     rnd_test_functor rndtest;
 
     // -- special cases
-    std::cout << "Generating edge cases:" << std::endl;
+    std::cout << "Generating small-size edge case tests:" << std::endl;
     //
-    std::cout << "1: Generating image with less then 5 colours..." << std::endl;
-    for (int i = 0; i < 1; i++)
-        _TestDataVec.push_back(rndtest(4000, 4000, true));
+    std::cout << "1: Generating image with simple colours..." << std::endl;
+    _TestDataVec.push_back(rndtest(100, 100, true, 1));
 
     std::cout << "2: Generating image with spiral pattern..." << std::endl;
-    for (int i = 0; i < 1; i++)
-        _TestDataVec.push_back(rndtest(1, 16000000, true));
+    _TestDataVec.push_back(rndtest(100, 100, true, 2));
+
+    std::cout << "3: Generating image with monochrome colour..." << std::endl;
+    _TestDataVec.push_back(rndtest(100, 100, true, 3));
+
     std::cout << "Finished generating tests." << std::endl;
 
     return _TestDataVec;
