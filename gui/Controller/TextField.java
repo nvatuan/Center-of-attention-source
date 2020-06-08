@@ -12,8 +12,9 @@ public class TextField {
 //        tf_input.setPreferredSize(new Dimension(200,200));
 //        tf_output.setPreferredSize(new Dimension(200,200));
 
-        tf_input.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
-        tf_output.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+
+        tf_input.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
+        tf_output.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
 
     }
 }
