@@ -10,7 +10,7 @@ void export_to_files(std::string folder) {
     int status = _mkdir(output_folder.c_str()); 
     if ( (status < 0) && (errno != EEXIST) ) throw new std::invalid_argument(output_folder);
 
-    std::vector<TestData> test_data_vector = get_test_data_vector();
+    std::vector<TestData> test_data_vector = get_test_data_vector(true);
     for (int i = 0; i < test_data_vector.size(); i++) {
         std::ofstream in_file ( output_folder + std::string("in") + std::to_string(i) + std::string(".txt"), std::ofstream::out | std::ofstream::trunc);
         std::ofstream out_file ( output_folder + std::string("out") + std::to_string(i) + std::string(".txt"), std::ofstream::out | std::ofstream::trunc);

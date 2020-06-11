@@ -11,6 +11,9 @@
 // -- global variables
 
 // -- checker
+
+// rewrite is_correct()
+// supply participant, jury is in is_correct()
 bool is_correct(const Image& img, const int& input, const std::vector<unsigned>& juryans) {
     std::vector<unsigned> output = img.central_pixels(input);
     std::sort(output.begin(), output.end());
@@ -19,13 +22,13 @@ bool is_correct(const Image& img, const int& input, const std::vector<unsigned>&
 }
 
 // -- import test_data
-std::vector<TestData> get_test_data_vector();
+std::vector<TestData> get_test_data_vector(int GENERATE_TEST);
 //
 int correct;
 int subtest;
 
-void run_test() {
-    std::vector<TestData> tests = get_test_data_vector();
+void run_test(int GENERATE_TEST) {
+    std::vector<TestData> tests = get_test_data_vector(GENERATE_TEST);
     // -- test initialize function vector
     int test_count = 0;
     int total_test = 0;
@@ -81,7 +84,8 @@ void run_test() {
 
 }
 
-int main() {
+int main(int argc, char** argv) {
     std::cout << std::setprecision(4) << std::fixed;
-    run_test();
+    //run_test( !(argc > 1) );
+    run_test(false);
 }

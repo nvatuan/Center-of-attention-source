@@ -2,12 +2,14 @@
 #include "../header/ImageDataStructure.hpp"
 #include "../header/TestDataStructure.hpp"
 
+// --
+
 TestData man0_test1();
 TestData man0_test2();
 TestData man0_test3();
 TestData man0_test4();
 
-std::vector<TestData> get_test_data_vector() {
+std::vector<TestData> get_test_data_vector(int GENERATE_TEST) {
     std::vector<std::function<TestData()>> _test = { 
         man0_test1, man0_test2, man0_test3, man0_test4
     };
