@@ -1,0 +1,26 @@
+Generating stress tests...
+Generating test#0
+Generating image..
+Generating results is [Omitted].
+Generating test#1
+Generating image..
+Generating results is [Omitted].
+Generating test#2
+Generating image..
+Generating results is [Omitted].
+Finished generating tests.
+Test is generated on the fly, correctness checking is not available in this mode.
+@Test1's Subtest = 1
+Test Executed time: 0.4540s
+Test Average Executed time: 0.4540s
+@Test2's Subtest = 1
+Test Executed time: 0.4490s
+Test Average Executed time: 0.4490s
+@Test3's Subtest = 1
+Test Executed time: 10.3900s
+Test Average Executed time: 10.3900s
+
+3 test(s) ran.
+Total test(s): 3
+Total Executed time: 11.2930s
+Total Average Executed time: 3.7643s

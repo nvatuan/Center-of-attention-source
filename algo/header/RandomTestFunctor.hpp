@@ -177,7 +177,7 @@ struct rnd_test_functor {
     // -- constructor
     rnd_test_functor() {}
     // -- function
-    TestData operator()(int _bound_w = 0, int _bound_h = 0, const bool& __maximize_w_h = false, int img_patt = 0) {
+    TestData operator()(int _bound_w = 0, int _bound_h = 0, const bool& __maximize_w_h = false, int img_patt = 0, const bool& __omit_result = false) {
         if (!_init_random_seed) init_random_seed();
         TestData td;
         td.test_index = _test_count++;
@@ -189,6 +189,9 @@ struct rnd_test_functor {
         image_generate(_bound_w, _bound_h, image_colours, td.img, __maximize_w_h, img_patt);
         
         // -- generate test input
+        // cap image_colours by image size
+        image_colours = std::min(image_colours, int(2e7)/(td.img.height*td.img.width));
+
         td.subtest_input.clear();
         td.subtest_input.resize(image_colours);
 
@@ -199,16 +202,20 @@ struct rnd_test_functor {
         td.subtest_juryans.clear();
         td.subtest_juryans.resize(td.subtest_input.size());
 
-        std::cout << "Generating results.." << std::endl;
-        for (unsigned test = 0; test < td.subtest_input.size(); test++) {
-            td.subtest_juryans.at(test) = td.img.central_pixels(td.subtest_input.at(test));
-            // -- DEBUGING
-            /*
-            std::cout << "Color = " << td.subtest_input.at(test) << "\n";
-            std::cout << "Answer size = " << td.subtest_juryans.at(test).size() << "\n";
-            for (unsigned a : td.subtest_juryans.at(test)) std::cout << a << " ";
-            std::cout << std::endl;
-            */
+        if (__omit_result) {
+            std::cout << "Generating results is [Omitted]." << std::endl;
+        } else {
+            std::cout << "Generating results.." << std::endl;
+            for (unsigned test = 0; test < td.subtest_input.size(); test++) {
+                td.subtest_juryans.at(test) = td.img.central_pixels(td.subtest_input.at(test));
+                // -- DEBUGING
+                /*
+                std::cout << "Color = " << td.subtest_input.at(test) << "\n";
+                std::cout << "Answer size = " << td.subtest_juryans.at(test).size() << "\n";
+                for (unsigned a : td.subtest_juryans.at(test)) std::cout << a << " ";
+                std::cout << std::endl;
+                */
+            }
         }
 
         return td;

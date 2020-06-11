@@ -1,0 +1,22 @@
+@Test1
+Correct: 57 subtest(s) out of 57
+Test Executed time: 0.0520s
+Test Average Executed time: 0.0009s
+@Test2
+Correct: 57 subtest(s) out of 57
+Test Executed time: 0.0470s
+Test Average Executed time: 0.0008s
+@Test3
+Correct: 1 subtest(s) out of 1
+Test Executed time: 0.0210s
+Test Average Executed time: 0.0210s
+@Test4
+Correct: 1 subtest(s) out of 1
+Test Executed time: 0.0000s
+Test Average Executed time: 0.0000s
+
+4 test(s) ran.
+Total test(s): 116
+Total correct(s): 116
+Total Executed time: 0.1200s
+Total Average Executed time: 0.0010s

@@ -1,0 +1,29 @@
+Generating small-size edge case tests:
+1: Generating image with simple colours...
+Generating test#0
+Generating image..
+Generating results..
+2: Generating image with spiral pattern...
+Generating test#1
+Generating image..
+Generating results..
+3: Generating image with monochrome colour...
+Generating test#2
+Generating image..
+Generating results..
+Finished generating tests.
+Test is generated on the fly, correctness checking is not available in this mode.
+@Test1's Subtest = 78
+Test Executed time: 0.2310s
+Test Average Executed time: 0.0030s
+@Test2's Subtest = 78
+Test Executed time: 2.8330s
+Test Average Executed time: 0.0363s
+@Test3's Subtest = 1
+Test Executed time: 0.2630s
+Test Average Executed time: 0.2630s
+
+3 test(s) ran.
+Total test(s): 157
+Total Executed time: 3.3270s
+Total Average Executed time: 0.0212s

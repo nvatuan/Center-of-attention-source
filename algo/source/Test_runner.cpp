@@ -38,6 +38,9 @@ void run_test(int GENERATE_TEST) {
     int total_time = 0;
     clock_t before;
     // -- run test
+    if (GENERATE_TEST) {
+        std::cout << "Test is generated on the fly, correctness checking is not available in this mode." << std::endl;
+    }
     for (const TestData& test : tests) {
         test_count++;
         //
@@ -46,7 +49,8 @@ void run_test(int GENERATE_TEST) {
             correct = 0;
             subtest = test.subtest_input.size();
             // --
-            std::cout << "@Test" << test_count << std::endl;
+            std::cout << "@Test" << test_count << "'s ";
+            std::cout << "Subtest = " << subtest << std::endl;
             // -- reset test_time
             test_time = 0;
 
@@ -56,15 +60,17 @@ void run_test(int GENERATE_TEST) {
                     correct++;
                     //std::cout << "Correct! @Test = " << test_count << " @Subtest = " << t << "\n";
                 } else {
-                    std::cout << "Wrong answer! @Test = " << test_count << " @Subtest = " << t << "\n";
+                    if (not GENERATE_TEST)
+                        std::cout << "Wrong answer! @Test = " << test_count << " @Subtest = " << t << "\n";
                 }
                 total_time += (clock() - before);
                 test_time += (clock() - before);
             }
             // --
-            std::cout << "Correct: " << correct << " subtest(s) out of " << subtest << std::endl;
-            std::cout << "Test Executed time: " << test_time*1.0/CLOCKS_PER_SEC << "s" << std::endl;
+            if (not GENERATE_TEST)
+                std::cout << "Correct: " << correct << " subtest(s) out of " << subtest << std::endl;
 
+            std::cout << "Test Executed time: " << test_time*1.0/CLOCKS_PER_SEC << "s" << std::endl;
             std::cout << "Test Average Executed time: " << (test_time*1.0/subtest)/CLOCKS_PER_SEC << "s" << std::endl;
 
             total_test += subtest;
@@ -78,7 +84,8 @@ void run_test(int GENERATE_TEST) {
     std::cout << std::endl;
     std::cout << tests.size() << " test(s) ran." << std::endl;
     std::cout << "Total test(s): " << total_test << std::endl;
-    std::cout << "Total correct(s): " << total_correct << std::endl;
+    if (not GENERATE_TEST)
+        std::cout << "Total correct(s): " << total_correct << std::endl;
     std::cout << "Total Executed time: " << total_time*1.0/CLOCKS_PER_SEC << "s" << std::endl;
     std::cout << "Total Average Executed time: " << (total_time*1.0/total_test)/CLOCKS_PER_SEC << "s" << std::endl;
 
@@ -87,5 +94,7 @@ void run_test(int GENERATE_TEST) {
 int main(int argc, char** argv) {
     std::cout << std::setprecision(4) << std::fixed;
     //run_test( !(argc > 1) );
-    run_test(false);
+    if (argc > 1 and (std::string(argv[1]) == "generate")) {
+        run_test(true);
+    } else run_test(false);
 }

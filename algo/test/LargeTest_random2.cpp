@@ -16,11 +16,11 @@ std::vector<TestData> get_test_data_vector(int GENERATE_TEST) {
         // -- stress test
         std::cout << "Generating stress tests..." << std::endl;
         for (int i = 0; i < 1; i++)
-            _TestDataVec.push_back(rndtest(4000, 4000, true));
+            _TestDataVec.push_back(rndtest(4000, 4000, true, 0, true));
         for (int i = 0; i < 1; i++)
-            _TestDataVec.push_back(rndtest(16000000, 1, true));
+            _TestDataVec.push_back(rndtest(16000000, 1, true, 0, true));
         for (int i = 0; i < 1; i++)
-            _TestDataVec.push_back(rndtest(1, 16000000, true));
+            _TestDataVec.push_back(rndtest(1, 16000000, true, 0, true));
         std::cout << "Finished generating tests." << std::endl;
     } else {
         std::cerr << "@LargeTest_random2: " << "importing tests..\n";

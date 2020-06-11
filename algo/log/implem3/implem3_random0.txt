@@ -1,0 +1,86 @@
+@Test1
+Correct: 1595 subtest(s) out of 1595
+Test Executed time: 0.1510s
+Test Average Executed time: 0.0001s
+@Test2
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test3
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test4
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0020s
+Test Average Executed time: 0.0001s
+@Test5
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0020s
+Test Average Executed time: 0.0001s
+@Test6
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0040s
+Test Average Executed time: 0.0002s
+@Test7
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0020s
+Test Average Executed time: 0.0001s
+@Test8
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test9
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test10
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test11
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test12
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0000s
+Test Average Executed time: 0.0000s
+@Test13
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test14
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0000s
+Test Average Executed time: 0.0000s
+@Test15
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0030s
+Test Average Executed time: 0.0002s
+@Test16
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0020s
+Test Average Executed time: 0.0001s
+@Test17
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0000s
+Test Average Executed time: 0.0000s
+@Test18
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0010s
+Test Average Executed time: 0.0001s
+@Test19
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0070s
+Test Average Executed time: 0.0004s
+@Test20
+Correct: 19 subtest(s) out of 19
+Test Executed time: 0.0000s
+Test Average Executed time: 0.0000s
+
+20 test(s) ran.
+Total test(s): 1956
+Total correct(s): 1956
+Total Executed time: 0.1810s
+Total Average Executed time: 0.0001s

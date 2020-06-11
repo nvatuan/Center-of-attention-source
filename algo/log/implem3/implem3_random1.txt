@@ -1,0 +1,46 @@
+@Test1
+Correct: 3858 subtest(s) out of 3858
+Test Executed time: 4.2100s
+Test Average Executed time: 0.0011s
+@Test2
+Correct: 4314 subtest(s) out of 4314
+Test Executed time: 5.2590s
+Test Average Executed time: 0.0012s
+@Test3
+Correct: 4219 subtest(s) out of 4219
+Test Executed time: 5.1480s
+Test Average Executed time: 0.0012s
+@Test4
+Correct: 4162 subtest(s) out of 4162
+Test Executed time: 5.3040s
+Test Average Executed time: 0.0013s
+@Test5
+Correct: 3775 subtest(s) out of 3775
+Test Executed time: 5.3090s
+Test Average Executed time: 0.0014s
+@Test6
+Correct: 4205 subtest(s) out of 4205
+Test Executed time: 5.8630s
+Test Average Executed time: 0.0014s
+@Test7
+Correct: 4244 subtest(s) out of 4244
+Test Executed time: 5.7120s
+Test Average Executed time: 0.0013s
+@Test8
+Correct: 4090 subtest(s) out of 4090
+Test Executed time: 4.5360s
+Test Average Executed time: 0.0011s
+@Test9
+Correct: 4178 subtest(s) out of 4178
+Test Executed time: 5.2260s
+Test Average Executed time: 0.0013s
+@Test10
+Correct: 3946 subtest(s) out of 3946
+Test Executed time: 5.1340s
+Test Average Executed time: 0.0013s
+
+10 test(s) ran.
+Total test(s): 40991
+Total correct(s): 40991
+Total Executed time: 51.6930s
+Total Average Executed time: 0.0013s
