@@ -1,7 +1,6 @@
-package main.centre_of_attention;
+package main;
 
-import main.centre_of_attention.pairRowColumn;
-
+import main.PairRowColumn;
 import java.util.Arrays;
 
 public class Image {
@@ -28,7 +27,7 @@ public class Image {
     public Image(int w, int h, int[] p) {
         this.width = w;
         this.height = h;
-        this.pixels = Arrays.copyof(p, p.length);
+        this.pixels = Arrays.copyOf(p, p.length);
     }
 
     public Image(Image img) {
@@ -40,8 +39,8 @@ public class Image {
     }
 
     // -- functions
-    public int pairToImageIndex(int ih, int iw) { return ih * this.height + iw; }
-    public int pairToImageIndex(PairRowColumn p) { return p.getRow() * this.height + p.getCol(); }
+    public int pairToImageIndex(int ih, int iw) { return ih * this.width + iw; }
+    public int pairToImageIndex(PairRowColumn p) { return p.getRow() * this.width + p.getCol(); }
     public PairRowColumn imageIndexToPair(int idx) {
         return new PairRowColumn(idx / this.width, idx % this.width);
     }
@@ -50,7 +49,7 @@ public class Image {
     @Override
     public String toString() {
         String rep = "Width = " + this.width + " | Height = " + this.height + "\n";
-        rep += "Image = {";
+        rep += "Image = {\n";
         for (int i = 0; i < this.width*this.height; i++) {
             rep += this.pixels[i];
             if ((i + 1) % width == 0) rep += "\n";

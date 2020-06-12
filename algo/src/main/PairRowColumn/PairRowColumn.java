@@ -1,4 +1,4 @@
-package main.centre_of_attention;
+package main;
 
 public class PairRowColumn {
     int r;
