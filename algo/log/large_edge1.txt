@@ -1,0 +1,12 @@
+There are 3 tests.
+@Test0
+Correct: 1 subtest(s) out of 1
+Test Execution time: 0.1340
+Test Average Execution time: 0.1340
+@Test1
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+        at java.base/java.util.LinkedList.linkLast(LinkedList.java:146)
+        at java.base/java.util.LinkedList.addLast(LinkedList.java:308)
+        at main.ImageCentralPixels.centralPixels(ImageCentralPixels.java:106)
+        at test.Tester.runTest(Tester.java:54)
+        at test.Tester.main(Tester.java:84)
