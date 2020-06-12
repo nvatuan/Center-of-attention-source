@@ -1,0 +1,17 @@
+There are 4 tests.
+@Test0
+Correct: 57 subtest(s) out of 57
+Test Execution time: 0.0460
+Test Average Execution time: 0.0008
+@Test1
+Correct: 57 subtest(s) out of 57
+Test Execution time: 0.0300
+Test Average Execution time: 0.0005
+@Test2
+Correct: 1 subtest(s) out of 1
+Test Execution time: 0.0100
+Test Average Execution time: 0.0100
+@Test3
+Correct: 1 subtest(s) out of 1
+Test Execution time: 0.0010
+Test Average Execution time: 0.0010
