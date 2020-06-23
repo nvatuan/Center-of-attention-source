@@ -1,11 +1,11 @@
-package Controller;
+package gui.Controller;
 
 // import from standard java
 import javax.swing.*;
 import java.awt.*;
 
 // import from my packages
-import Constants.MyFont;
+import gui.Constants.MyFont;
 
 public class TextField {
     public static JTextArea ta_input = new JTextArea();

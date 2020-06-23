@@ -1,16 +1,16 @@
-package Controller;
+package gui.Controller;
 
-import Controller.panel.Menu_bar;
-import Controller.panel.panel_center;
-import Controller.panel.panel_higashi;
-import Controller.panel.panel_nishi;
+import gui.Controller.panel.Menu_bar;
+import gui.Controller.panel.panel_center;
+import gui.Controller.panel.panel_higashi;
+import gui.Controller.panel.panel_nishi;
 
 import javax.swing.*;
 import java.awt.*;
 
-import Constants.MyHeightWidth;
-import Event.HistoryButtonEvent;
-import Event.ReformatButtonEvent;
+import gui.Constants.MyHeightWidth;
+import gui.Event.HistoryButtonEvent;
+import gui.Event.ReformatButtonEvent;
 
 public class Frame extends Button implements Menu_bar, panel_nishi, panel_higashi, panel_center {
     public static JFrame frame_chinh = new JFrame("Center of Attention");

@@ -1,15 +1,15 @@
-package Event;
+package gui.Event;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Controller.Frame;
-import Controller.Label;
+import gui.Controller.Frame;
+import gui.Controller.Label;
 
 public class ReformatButtonEvent implements ActionListener {
-    public Controller.Frame obj;
-    public ReformatButtonEvent(Controller.Frame obj)
+    public gui.Controller.Frame obj;
+    public ReformatButtonEvent(gui.Controller.Frame obj)
     {
         this.obj = obj;
     }

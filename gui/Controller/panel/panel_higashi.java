@@ -1,4 +1,4 @@
-package Controller.panel;
+package gui.Controller.panel;
 
 import javax.swing.*;
 

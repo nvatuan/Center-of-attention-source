@@ -1,4 +1,4 @@
-package ComponentDesign;
+package gui.ComponentDesign;
 
 public class Menu {
 }

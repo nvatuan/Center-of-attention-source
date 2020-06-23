@@ -1,4 +1,4 @@
-package Event;
+package gui.Event;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,11 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HistoryButtonEvent implements ActionListener {
-    public Controller.Frame obj;
+    public gui.Controller.Frame obj;
     public JTable History_table = new JTable();
     public JScrollPane History_Scroll = new JScrollPane(History_table);
 
-    public HistoryButtonEvent(Controller.Frame frame) {
+    public HistoryButtonEvent(gui.Controller.Frame frame) {
         this.obj = frame;
     }
 

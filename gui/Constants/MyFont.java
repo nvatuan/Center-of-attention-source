@@ -1,4 +1,4 @@
-package Constants;
+package gui.Constants;
 
 import java.awt.*;
 
