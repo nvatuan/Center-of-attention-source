@@ -1,6 +1,6 @@
 package main.algo;
 
-import main.algo.PairRowColumn;
+import main.algo.*;
 import java.util.Arrays;
 
 public class Image {

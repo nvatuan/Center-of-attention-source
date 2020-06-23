@@ -11,6 +11,7 @@ import java.awt.*;
 import main.gui.Constants.MyHeightWidth;
 import main.gui.Event.HistoryButtonEvent;
 import main.gui.Event.ReformatButtonEvent;
+import main.gui.Event.StartButtonEvent;
 
 public class Frame extends Button implements Menu_bar, panel_nishi, panel_higashi, panel_center {
     public static JFrame frame_chinh = new JFrame("Center of Attention");
@@ -46,6 +47,8 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
         pnl_nishi.add(Start,c);
+        StartButtonEvent sbe = new StartButtonEvent(this);
+        Start.addActionListener(sbe);
         //
         c.gridx = 0;
         c.gridy = 1;
