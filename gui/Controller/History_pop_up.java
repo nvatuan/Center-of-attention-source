@@ -2,6 +2,7 @@ package Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,9 +17,10 @@ public class History_pop_up implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFrame History_frame = new JFrame("History");
+        JDialog History_frame = new JDialog();
+        History_frame.setTitle("History");
         History_frame.setSize(550,300);
-        History_frame.setDefaultCloseOperation(3);
+        History_frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         History_frame.setLocationRelativeTo(null);
         History_frame.setLayout(new BorderLayout(10,10));
 
@@ -38,6 +40,7 @@ public class History_pop_up implements ActionListener {
         History_frame.add(History_Scroll,BorderLayout.CENTER);
         History_Scroll.setViewportView(History_table);
 
+        History_frame.setModalityType(ModalityType.APPLICATION_MODAL);
         History_frame.setVisible(true);
     }
 }
