@@ -6,13 +6,13 @@ import Controller.panel.panel_higashi;
 import Controller.panel.panel_nishi;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, panel_higashi, panel_center {
+    public static JFrame frame_chinh = new JFrame("Center of Attention");
     public Frame()
     {
-        JFrame frame_chinh = new JFrame("Center of Attention");
         frame_chinh.setSize(thong_so.W,thong_so.H);
         frame_chinh.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame_chinh.setLocationRelativeTo(null);
@@ -33,7 +33,6 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         Button.to_vien();
         JPanel pnl_nishi = new JPanel();
         pnl_nishi.setBorder(BorderFactory.createTitledBorder("Function"));
-//        pnl_nishi.setBackground(Color.LIGHT_GRAY);
         pnl_nishi.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.ipady = 15;
@@ -52,6 +51,8 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         c.gridx = 0;
         c.gridy = 2;
         pnl_nishi.add(History,c);
+        History_pop_up obj = new History_pop_up(this);
+        History.addActionListener(obj);
         //
         JButton About = new JButton("About us");
         c.weighty = 0.5;
@@ -73,8 +74,6 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
 
         GridBagConstraints c = new GridBagConstraints();
 
-        c.weightx = 1;
-        c.weighty = 0;
 
         c.ipadx = 10;
         c.ipady = 10;
@@ -88,13 +87,14 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         pnl_higashi.add(lb_input,c);
 
 
-        JLabel lb_question1 = new JLabel("?");
+
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 0;
         c.gridwidth = 1;
         c.gridheight = 1;
         pnl_higashi.add(lb_question1,c);
+
 
         c.insets = new Insets(0,10,120,10);
         c.gridx = 0;
@@ -103,7 +103,8 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         c.gridheight = 1;
         c.ipadx = 120;
         c.ipady = 130;
-        pnl_higashi.add(tf_input,c);
+        pnl_higashi.add(ta_input,c);
+
 
 
         c.insets = new Insets(0,10,10,10);
@@ -117,7 +118,6 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         pnl_higashi.add(lb_output,c);
 
 
-        JLabel lb_question2 = new JLabel("?");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 2;
@@ -125,13 +125,25 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         c.gridheight = 1;
         pnl_higashi.add(lb_question2,c);
 
+
         c.gridx = 0;
         c.gridy = 3;
         c.gridwidth = 2;
         c.gridheight = 1;
         c.ipadx = 120;
         c.ipady = 130;
-        pnl_higashi.add(tf_output,c);
+        pnl_higashi.add(ta_output,c);
+
+        c.insets = new Insets(5,10,10,10);
+        c.ipadx = 0;
+        c.ipady = 0;
+        c.gridx = 0;
+        c.gridy = 4;
+        c.gridwidth = 2;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        Refortmat_button_Event RF_Event = new Refortmat_button_Event(this);
+        Reformat.addActionListener(RF_Event);
+        pnl_higashi.add(Reformat, c);
 
         return pnl_higashi;
     }
@@ -147,23 +159,25 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
     @Override
     public JPanel panel_center() {
         JPanel pnl_center = new JPanel();
-        JPanel pnl_center1 = new JPanel();
-        pnl_center1.setLayout(new BorderLayout());
-        pnl_center1.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
+        JPanel pnl_center_temp = new JPanel();
+        pnl_center_temp.setLayout(new BorderLayout());
+        pnl_center_temp.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
         pnl_center.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        pnl_center1.add(pnl_center,BorderLayout.CENTER);
+        pnl_center_temp.add(pnl_center,BorderLayout.CENTER);
 //        pnl_center.setBackground(Color.red);
-        ImageIcon image1 = null;
-        try{
+//        ImageIcon image1 = null;
+//        try{
 //            image1 = new ImageIcon(getClass().getResource("../a1.jpg"));
 //            JLabel lb_center = new JLabel(image1);
 //            lb_center.setOpaque(true);
 //            pnl_center.add(lb_center);
-        }catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(null,"Lỗi chèn ảnh vào panel center");
-            JOptionPane.showMessageDialog(null,"" + (image1 == null));
-        }
-        return pnl_center1;
+//        }catch (Exception e)
+//        {
+//            JOptionPane.showMessageDialog(null,"Lỗi chèn ảnh vào panel center");
+//            JOptionPane.showMessageDialog(null,"" + (image1 == null));
+//        }
+        return pnl_center_temp;
     }
+
+
 }
