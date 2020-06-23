@@ -3,7 +3,7 @@ package Controller;
 import javax.swing.*;
 import java.awt.*;
 
-public class Label extends TextField{
+public class Label extends TextField {
     static JLabel lb_input = new JLabel("INPUT");
     static JLabel lb_output = new JLabel("OUTPUT");
     static JLabel lb_question1 = new JLabel("?");

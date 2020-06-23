@@ -1,22 +1,26 @@
 package Controller;
 
+// import from standard java
 import javax.swing.*;
 import java.awt.*;
 
-public class TextField extends My_Font{
-    static JTextArea ta_input = new JTextArea();
-    static JTextArea ta_output = new JTextArea();
+// import from my packages
+import Constants.MyFont;
+
+public class TextField {
+    public static JTextArea ta_input = new JTextArea();
+    public static JTextArea ta_output = new JTextArea();
     static void to_vien() {
 //      tf_input.setPreferredSize(new Dimension(200,200));
 //      tf_output.setPreferredSize(new Dimension(200,200));
-        ta_input.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
+        ta_input.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         ta_input.setPreferredSize(ta_input.getSize());
-        ta_input.setFont(My_Font);
+        ta_input.setFont(MyFont.Monospaced);
         ta_input.setLineWrap(true);
 
-        ta_output.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
+        ta_output.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         ta_output.setPreferredSize(ta_output.getSize());
-        ta_output.setFont(My_Font);
+        ta_output.setFont(MyFont.Monospaced);
         ta_output.setLineWrap(true);
     }
 }

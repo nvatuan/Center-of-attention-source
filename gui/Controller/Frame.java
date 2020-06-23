@@ -8,16 +8,20 @@ import Controller.panel.panel_nishi;
 import javax.swing.*;
 import java.awt.*;
 
-public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, panel_higashi, panel_center {
+import Constants.MyHeightWidth;
+import Event.HistoryButtonEvent;
+import Event.ReformatButtonEvent;
+
+public class Frame extends Button implements Menu_bar, panel_nishi, panel_higashi, panel_center {
     public static JFrame frame_chinh = new JFrame("Center of Attention");
     public Frame()
     {
-        frame_chinh.setSize(thong_so.W,thong_so.H);
+        frame_chinh.setSize(MyHeightWidth.W,MyHeightWidth.H);
         frame_chinh.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame_chinh.setLocationRelativeTo(null);
         frame_chinh.setLayout(new BorderLayout(10,5));
-
-        //add JMenubar vào trong frame
+        
+        // -- add JMenubar vào trong frame
         frame_chinh.setJMenuBar(add());
 
         frame_chinh.add(BorderLayout.CENTER, panel_center());
@@ -50,7 +54,7 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         c.gridx = 0;
         c.gridy = 2;
         pnl_nishi.add(History,c);
-        History_pop_up obj = new History_pop_up(this);
+        HistoryButtonEvent obj = new HistoryButtonEvent(this);
         History.addActionListener(obj);
         //
         JButton About = new JButton("About us");
@@ -132,7 +136,7 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         c.gridy = 4;
         c.gridwidth = 2;
         c.fill = GridBagConstraints.HORIZONTAL;
-        Refortmat_button_Event RF_Event = new Refortmat_button_Event(this);
+        ReformatButtonEvent RF_Event = new ReformatButtonEvent(this);
         Reformat.addActionListener(RF_Event);
         pnl_higashi.add(Reformat, c);
 
