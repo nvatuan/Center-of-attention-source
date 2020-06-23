@@ -1,7 +1,5 @@
 package Controller;
 
-import Controller.Button;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,17 +10,12 @@ public class History_pop_up implements ActionListener {
     public JTable History_table = new JTable();
     public JScrollPane History_Scroll = new JScrollPane(History_table);
 
-    History_pop_up(Frame obj)
-    {
+    History_pop_up(Frame obj) {
         this.obj = obj;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
-
         JFrame History_frame = new JFrame("History");
         History_frame.setSize(550,300);
         History_frame.setDefaultCloseOperation(3);
@@ -45,11 +38,6 @@ public class History_pop_up implements ActionListener {
         History_frame.add(History_Scroll,BorderLayout.CENTER);
         History_Scroll.setViewportView(History_table);
 
-
-
-
         History_frame.setVisible(true);
-
-
     }
 }

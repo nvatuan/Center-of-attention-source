@@ -7,7 +7,6 @@ import Controller.panel.panel_nishi;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
 
 public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, panel_higashi, panel_center {
     public static JFrame frame_chinh = new JFrame("Center of Attention");
@@ -24,7 +23,7 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         frame_chinh.add(BorderLayout.CENTER, panel_center());
         frame_chinh.add(BorderLayout.WEST, panel_nishi());
         frame_chinh.add(BorderLayout.EAST, panel_higashi() );
-//        frame_chinh.pack();
+//      frame_chinh.pack();
         frame_chinh.setVisible(true);
     }
 
@@ -74,7 +73,6 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
 
         GridBagConstraints c = new GridBagConstraints();
 
-
         c.ipadx = 10;
         c.ipady = 10;
         c.insets = new Insets(10,10,0,10);
@@ -86,15 +84,12 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
 
         pnl_higashi.add(lb_input,c);
 
-
-
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 0;
         c.gridwidth = 1;
         c.gridheight = 1;
         pnl_higashi.add(lb_question1,c);
-
 
         c.insets = new Insets(0,10,120,10);
         c.gridx = 0;
@@ -104,8 +99,6 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         c.ipadx = 120;
         c.ipady = 130;
         pnl_higashi.add(ta_input,c);
-
-
 
         c.insets = new Insets(0,10,10,10);
         c.ipadx = 10;
@@ -117,14 +110,12 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
         c.gridheight = 1;
         pnl_higashi.add(lb_output,c);
 
-
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 2;
         c.gridwidth = 1;
         c.gridheight = 1;
         pnl_higashi.add(lb_question2,c);
-
 
         c.gridx = 0;
         c.gridy = 3;
@@ -178,6 +169,4 @@ public class Frame extends Button  implements thong_so, Menu_bar, panel_nishi, p
 //        }
         return pnl_center_temp;
     }
-
-
 }

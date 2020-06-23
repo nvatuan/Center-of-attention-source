@@ -1,10 +1,6 @@
 package Controller;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Button extends Label{
         static JButton Start = new JButton("Start");
@@ -15,16 +11,12 @@ public class Button extends Label{
     {
         //tô viền button
         Start.setBorder(BorderFactory.createRaisedBevelBorder());
-//        Start.setFont(new Font("Courier",Font.BOLD,10));
+//      Start.setFont(new Font("Courier",Font.BOLD,10));
         Log.setBorder(BorderFactory.createRaisedBevelBorder());
-//        Log.setFont(new Font("Courier",Font.BOLD,10));
+//      Log.setFont(new Font("Courier",Font.BOLD,10));
         History.setBorder(BorderFactory.createRaisedBevelBorder());
-//        History.setFont(new Font("Courier",Font.BOLD,10));
+//      History.setFont(new Font("Courier",Font.BOLD,10));
 
         Reformat.setBorder(BorderFactory.createRaisedBevelBorder());
-
-
     }
-
-
 }

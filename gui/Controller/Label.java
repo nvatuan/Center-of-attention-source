@@ -1,7 +1,6 @@
 package Controller;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Label extends TextField{
@@ -9,8 +8,6 @@ public class Label extends TextField{
     static JLabel lb_output = new JLabel("OUTPUT");
     static JLabel lb_question1 = new JLabel("?");
     static JLabel lb_question2 = new JLabel("?");
-
-
 
     static void can_chinh()
     {
@@ -25,12 +22,5 @@ public class Label extends TextField{
 
         lb_question2.setFont(new Font("Arial", Font.BOLD,20));
         lb_question2.setToolTipText("Nhập OUTPUT");
-
-
-
-
     }
-
-
-
 }
