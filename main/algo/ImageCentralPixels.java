@@ -9,11 +9,42 @@ import java.util.LinkedList;
 
 import static java.lang.Math.max;
 
-public class ImageCentralPixels extends Image {
+import java.io.Serializable;
+
+public class ImageCentralPixels extends Image implements Serializable {
+    public int k;
     // -- constructors
     public ImageCentralPixels() { super(); }
     public ImageCentralPixels(int w, int h) { super(w, h); }
     public ImageCentralPixels(int w, int h, int[] p) { super(w, h, p); }
+    public ImageCentralPixels(int w, int h, int[] p, int k) { super(w, h, p); this.k = k; }
+    // -- create
+    public static ImageCentralPixels parseImageCP(String st) {
+        String str = st.trim(); 
+        String[] temp = str.split("\\s+");
+        String arr = "";
+        int n = 0, m = 0, k = 0;
+        int count = 0;
+        int[] p = null;
+        //
+        try {
+            n = Integer.parseInt(temp[0]); count++;
+            m = Integer.parseInt(temp[1]); count++;
+            k = Integer.parseInt(temp[2]); count++;
+            p = new int[n*m];
+            for(int i = 0; i < n*m ; i++)
+            {
+                p[i] = Integer.parseInt(temp[3+i]);
+            }
+            for(int i = n*m ; i < temp.length ; i++)
+            {
+                temp[n*m] = "0";
+            }
+        } catch (Exception e1) {
+            //JOptionPane.showMessageDialog(null,"Format error in" + count + "line");
+        }
+        return new ImageCentralPixels(n, m, p, k);
+    }
 
     private boolean isBorder(int ih, int iw, int colour) {
         boolean flag = false;
@@ -116,5 +147,17 @@ public class ImageCentralPixels extends Image {
         for (int i = 0; i < answerArrList.size(); i++)
             answer[i] = answerArrList.get(i);
         return answer;
+    }
+
+    @Override public String toString() {
+        String rep = width + " " + height + "\n" + k + "\n";
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                rep += pixels[i*width + j];
+                if (j + 1 < width) rep += " ";
+            }
+            rep += "\n";
+        }
+        return rep;
     }
 }

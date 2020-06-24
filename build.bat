@@ -10,4 +10,4 @@ javac -encoding utf-8 -d out main/gui/Event/*.java
 
 javac -encoding utf-8 -d out main/runner/runner.java
 
-java -cp out runner
+java -cp out;main/lib/mysql-connector-java-5.1.49.jar main.runner

@@ -1,3 +1,5 @@
+package main;
+
 import main.gui.Controller.Frame;
 
 public class runner {
