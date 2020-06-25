@@ -1,34 +1,38 @@
 package main.gui.Controller;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
 import main.gui.Controller.panel.Menu_bar;
 import main.gui.Controller.panel.panel_center;
 import main.gui.Controller.panel.panel_higashi;
 import main.gui.Controller.panel.panel_nishi;
 
-import javax.swing.*;
-import java.awt.*;
-
+import main.gui.Controller.Canvas;
 import main.gui.Constants.MyHeightWidth;
 import main.gui.Event.HistoryButtonEvent;
 import main.gui.Event.ReformatButtonEvent;
 import main.gui.Event.StartButtonEvent;
 
 public class Frame extends Button implements Menu_bar, panel_nishi, panel_higashi, panel_center {
-    public static JFrame frame_chinh = new JFrame("Center of Attention");
-    public Frame()
-    {
-        frame_chinh.setSize(MyHeightWidth.W,MyHeightWidth.H);
+    public JFrame frame_chinh = new JFrame("Center of Attention");
+    private Canvas canvas = null;
+
+    public Frame() {
+        frame_chinh.setSize(MyHeightWidth.W, MyHeightWidth.H);
         frame_chinh.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame_chinh.setLocationRelativeTo(null);
-        frame_chinh.setLayout(new BorderLayout(10,5));
-        
+        frame_chinh.setLayout(new BorderLayout(10, 5));
+
         // -- add JMenubar vào trong frame
         frame_chinh.setJMenuBar(add());
 
         frame_chinh.add(BorderLayout.CENTER, panel_center());
         frame_chinh.add(BorderLayout.WEST, panel_nishi());
-        frame_chinh.add(BorderLayout.EAST, panel_higashi() );
-//      frame_chinh.pack();
+        frame_chinh.add(BorderLayout.EAST, panel_higashi());
+        // frame_chinh.pack();
         frame_chinh.setVisible(true);
     }
 
@@ -41,22 +45,22 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
         GridBagConstraints c = new GridBagConstraints();
         c.ipady = 15;
         c.ipadx = 30;
-        c.insets = new Insets(20,10,10,10);
+        c.insets = new Insets(20, 10, 10, 10);
         //
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
-        pnl_nishi.add(Start,c);
+        pnl_nishi.add(Start, c);
         StartButtonEvent sbe = new StartButtonEvent(this);
         Start.addActionListener(sbe);
         //
         c.gridx = 0;
         c.gridy = 1;
-        pnl_nishi.add(Log,c);
+        pnl_nishi.add(Log, c);
         //
         c.gridx = 0;
         c.gridy = 2;
-        pnl_nishi.add(History,c);
+        pnl_nishi.add(History, c);
         HistoryButtonEvent obj = new HistoryButtonEvent(this);
         History.addActionListener(obj);
         //
@@ -65,7 +69,7 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
         c.anchor = GridBagConstraints.LAST_LINE_END;
         c.gridx = 0;
         c.gridy = 3;
-        pnl_nishi.add(About,c);
+        pnl_nishi.add(About, c);
 
         return pnl_nishi;
     }
@@ -82,32 +86,32 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
 
         c.ipadx = 10;
         c.ipady = 10;
-        c.insets = new Insets(10,10,0,10);
+        c.insets = new Insets(10, 10, 0, 10);
         c.fill = GridBagConstraints.VERTICAL;
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 1;
         c.gridheight = 1;
 
-        pnl_higashi.add(lb_input,c);
+        pnl_higashi.add(lb_input, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 0;
         c.gridwidth = 1;
         c.gridheight = 1;
-        pnl_higashi.add(lb_question1,c);
+        pnl_higashi.add(lb_question1, c);
 
-        c.insets = new Insets(0,10,120,10);
+        c.insets = new Insets(0, 10, 120, 10);
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 2;
         c.gridheight = 1;
         c.ipadx = 120;
         c.ipady = 130;
-        pnl_higashi.add(ta_input,c);
+        pnl_higashi.add(ta_input, c);
 
-        c.insets = new Insets(0,10,10,10);
+        c.insets = new Insets(0, 10, 10, 10);
         c.ipadx = 10;
         c.ipady = 10;
         c.fill = GridBagConstraints.VERTICAL;
@@ -115,14 +119,14 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
         c.gridy = 2;
         c.gridwidth = 1;
         c.gridheight = 1;
-        pnl_higashi.add(lb_output,c);
+        pnl_higashi.add(lb_output, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 2;
         c.gridwidth = 1;
         c.gridheight = 1;
-        pnl_higashi.add(lb_question2,c);
+        pnl_higashi.add(lb_question2, c);
 
         c.gridx = 0;
         c.gridy = 3;
@@ -130,9 +134,9 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
         c.gridheight = 1;
         c.ipadx = 120;
         c.ipady = 130;
-        pnl_higashi.add(ta_output,c);
+        pnl_higashi.add(ta_output, c);
 
-        c.insets = new Insets(5,10,10,10);
+        c.insets = new Insets(5, 10, 10, 10);
         c.ipadx = 0;
         c.ipady = 0;
         c.gridx = 0;
@@ -156,12 +160,24 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
 
     @Override
     public JPanel panel_center() {
-        JPanel pnl_center = new JPanel();
-        JPanel pnl_center_temp = new JPanel();
-        pnl_center_temp.setLayout(new BorderLayout());
-        pnl_center_temp.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
-        pnl_center.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        pnl_center_temp.add(pnl_center,BorderLayout.CENTER);
+        JPanel canvasContainer = new JPanel();
+        canvasContainer.setLayout(new BorderLayout());
+        canvasContainer.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
+        canvasContainer.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+        canvas = new Canvas();
+        canvasContainer.add(canvas, BorderLayout.CENTER);
+        canvasContainer.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int w = canvasContainer.getWidth();
+                int h = canvasContainer.getHeight();
+                int edge = Math.min(w, h);
+                canvas.setPreferredSize(new Dimension(edge, edge));
+                canvas.repaint();
+                canvasContainer.revalidate();
+            }
+        });
 //        pnl_center.setBackground(Color.red);
 //        ImageIcon image1 = null;
 //        try{
@@ -174,6 +190,6 @@ public class Frame extends Button implements Menu_bar, panel_nishi, panel_higash
 //            JOptionPane.showMessageDialog(null,"Lỗi chèn ảnh vào panel center");
 //            JOptionPane.showMessageDialog(null,"" + (image1 == null));
 //        }
-        return pnl_center_temp;
+        return canvasContainer;
     }
 }
