@@ -2,6 +2,6 @@ package main.gui.Controller.panel;
 
 import javax.swing.*;
 
-public interface panel_center {
-    JPanel panel_center();
+public interface PanelNishi {
+     JPanel panelNishi();
 }

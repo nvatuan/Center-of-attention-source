@@ -17,8 +17,8 @@ public class ReformatButtonEvent implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 //      JOptionPane.showMessageDialog(null, obj.ta_input.getText());
-        String str = obj.ta_input.getText();
-        String[] temp = str.split("\\s");
+        String str = obj.taInput.getText();
+        String[] temp = str.split("\\s+");
         String arr = "";
         int n = 0, m = 0, k = 0;
         int count = 0;
@@ -51,6 +51,6 @@ public class ReformatButtonEvent implements ActionListener {
                 c++;
             }
         }
-        obj.ta_input.setText(arr);
+        obj.taInput.setText(arr);
     }
 }

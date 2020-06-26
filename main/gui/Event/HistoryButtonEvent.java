@@ -20,12 +20,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import main.algo.ImageCentralPixels;
-import main.database.Ultility;
+import main.database.Ulti;
 
 public class HistoryButtonEvent implements ActionListener {
     public main.gui.Controller.Frame obj;
-    public JTable History_table = new JTable();
-    public JScrollPane History_scroll = new JScrollPane(History_table);
+    public JTable historyTable = new JTable();
+    public JScrollPane historyScroll = new JScrollPane(historyTable);
     
     public SqlHandler handler = null;
 
@@ -35,14 +35,14 @@ public class HistoryButtonEvent implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        History_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        historyTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        JDialog History_frame = new JDialog();
-        History_frame.setTitle("History");
-        History_frame.setSize(550,300);
-        History_frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        History_frame.setLocationRelativeTo(null);
-        History_frame.setLayout(new BorderLayout(10,10));
+        JDialog historyFrame = new JDialog();
+        historyFrame.setTitle("History");
+        historyFrame.setSize(550,300);
+        historyFrame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        historyFrame.setLocationRelativeTo(null);
+        historyFrame.setLayout(new BorderLayout(10,10));
 
         JPanel pnl_South = new JPanel();
         pnl_South.setLayout(new GridLayout(1,4,10,10));
@@ -56,23 +56,23 @@ public class HistoryButtonEvent implements ActionListener {
         JButton Save = new JButton("Save Current");
         Save.setActionCommand("Save");
         // -- event
-        Clone_Input.addActionListener(new SqlHandler(obj, History_table));
-        Delete.addActionListener(new SqlHandler(obj, History_table));
-        Save.addActionListener(new SqlHandler(obj, History_table));
+        Clone_Input.addActionListener(new SqlHandler(obj, historyTable));
+        Delete.addActionListener(new SqlHandler(obj, historyTable));
+        Save.addActionListener(new SqlHandler(obj, historyTable));
 
         pnl_South.add(Clone_Input);
         pnl_South.add(Delete);
         //pnl_South.add(Export_Data);
         pnl_South.add(Save);
-        History_frame.add(pnl_South, BorderLayout.SOUTH);
+        historyFrame.add(pnl_South, BorderLayout.SOUTH);
 
-        History_frame.add(History_scroll,BorderLayout.CENTER);
-        History_scroll.setViewportView(History_table);
+        historyFrame.add(historyScroll,BorderLayout.CENTER);
+        historyScroll.setViewportView(historyTable);
 
-        handler = new SqlHandler(obj, History_table);
+        handler = new SqlHandler(obj, historyTable);
         handler.Show();
 
-        History_frame.setModalityType(ModalityType.APPLICATION_MODAL);
-        History_frame.setVisible(true);
+        historyFrame.setModalityType(ModalityType.APPLICATION_MODAL);
+        historyFrame.setVisible(true);
     }
 }

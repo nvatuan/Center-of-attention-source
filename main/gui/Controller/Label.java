@@ -4,23 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Label extends TextField {
-    static JLabel lb_input = new JLabel("INPUT");
-    static JLabel lb_output = new JLabel("OUTPUT");
-    static JLabel lb_question1 = new JLabel("?");
-    static JLabel lb_question2 = new JLabel("?");
+    static JLabel lblInput = new JLabel("INPUT");
+    static JLabel lblOutput = new JLabel("OUTPUT");
+    static JLabel lblQuestion1 = new JLabel("?");
+    static JLabel lblQuestion2 = new JLabel("?");
 
     static void can_chinh()
     {
-        lb_input.setFont(new Font("Arial", Font.BOLD,15));
-        lb_input.setHorizontalAlignment(JLabel.CENTER);
+        lblInput.setFont(new Font("Arial", Font.BOLD,15));
+        lblInput.setHorizontalAlignment(JLabel.CENTER);
 
-        lb_output.setFont(new Font("Arial", Font.BOLD,15));
-        lb_output.setHorizontalAlignment(JLabel.CENTER);
+        lblOutput.setFont(new Font("Arial", Font.BOLD,15));
+        lblOutput.setHorizontalAlignment(JLabel.CENTER);
 
-        lb_question1.setFont(new Font("Arial", Font.BOLD,20));
-        lb_question1.setToolTipText("Nhập INPUT");
+        lblQuestion1.setFont(new Font("Arial", Font.BOLD,20));
+        lblQuestion1.setToolTipText("Nhập INPUT");
 
-        lb_question2.setFont(new Font("Arial", Font.BOLD,20));
-        lb_question2.setToolTipText("Nhập OUTPUT");
+        lblQuestion2.setFont(new Font("Arial", Font.BOLD,20));
+        lblQuestion2.setToolTipText("Nhập OUTPUT");
     }
 }

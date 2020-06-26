@@ -8,19 +8,19 @@ import java.awt.*;
 import main.gui.Constants.MyFont;
 
 public class TextField {
-    public static JTextArea ta_input = new JTextArea();
-    public static JTextArea ta_output = new JTextArea();
+    public static JTextArea taInput = new JTextArea();
+    public static JTextArea taOutput = new JTextArea();
     static void to_vien() {
 //      tf_input.setPreferredSize(new Dimension(200,200));
 //      tf_output.setPreferredSize(new Dimension(200,200));
-        ta_input.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        ta_input.setPreferredSize(ta_input.getSize());
-        ta_input.setFont(MyFont.Monospaced);
-        ta_input.setLineWrap(true);
+        taInput.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        taInput.setPreferredSize(taInput.getSize());
+        taInput.setFont(MyFont.Monospaced);
+        taInput.setLineWrap(true);
 
-        ta_output.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        ta_output.setPreferredSize(ta_output.getSize());
-        ta_output.setFont(MyFont.Monospaced);
-        ta_output.setLineWrap(true);
+        taOutput.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        taOutput.setPreferredSize(taOutput.getSize());
+        taOutput.setFont(MyFont.Monospaced);
+        taOutput.setLineWrap(true);
     }
 }

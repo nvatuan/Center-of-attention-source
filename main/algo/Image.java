@@ -1,9 +1,9 @@
 package main.algo;
 
-import main.algo.*;
-
 import java.io.Serializable;
 import java.util.Arrays;
+
+import main.algo.*;
 
 public class Image implements Serializable {
     int[] pixels;

@@ -15,16 +15,25 @@ public class StartButtonEvent implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String str = obj.ta_input.getText();
-        ImageCentralPixels img = ImageCentralPixels.parseImageCP(str);
-        int[] result = img.centralPixels(img.k);
-        //
-        String tostring = "{";
-        for (int i = 0; i < result.length; i++) {
-            tostring += result[i];
-            if (i + 1 < result.length) tostring += " ";
+        String str = obj.taInput.getText();
+
+        String resultString = "";
+        try {
+            ImageCentralPixels img = ImageCentralPixels.parseImageCP(str);
+
+            int[] result = img.centralPixels(img.queriedColor);
+            //
+            resultString = "{";
+            for (int i = 0; i < result.length; i++) {
+                resultString += result[i];
+                if (i + 1 < result.length) resultString += " ";
+            }
+            resultString += "}";
+        } catch (NumberFormatException nfex) {
+            JOptionPane.showMessageDialog(null, "INPUT contains invalid characters. Please input only numbers", "Error: parsing Input", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+        } finally {
+            obj.taOutput.setText(resultString);
         }
-        tostring += "}";
-        obj.ta_output.setText(tostring);
     }
 }

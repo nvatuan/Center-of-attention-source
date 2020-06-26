@@ -9,11 +9,15 @@ import java.sql.ResultSetMetaData;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
-public class Ultility {
-    public static Connection getDefaultConnection() {
-        String url = "jdbc:mysql://localhost:3306/javabase";
-        String username = "nvat";
-        String password = "nvat";
+public class Ulti {
+    public static Connection getConnectionDefault() {
+        return getConnectionWithParams("javabase", "root", "root");
+    }
+    
+    public static Connection getConnectionWithParams(String database, String user, String pass) {
+        String url = "jdbc:mysql://localhost:3306/" + database;
+        String username = user;
+        String password = pass;
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
             System.out.println("@main.database.Conn: Success!");
@@ -24,6 +28,7 @@ public class Ultility {
             e.printStackTrace();
             return null;
         }
+
     }
 
     public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
@@ -48,8 +53,4 @@ public class Ultility {
 
         return new DefaultTableModel(data, columnNames);
     }
-
-    //public static void main(String args[]) {
-    //    Ultility.getDefaultConnection();
-    //}
 }

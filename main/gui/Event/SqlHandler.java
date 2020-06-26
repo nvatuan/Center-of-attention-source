@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import main.database.Ultility;
+import main.database.Ulti;
 import main.gui.Controller.Frame;
 import main.algo.ImageCentralPixels;
 
@@ -56,7 +56,7 @@ public class SqlHandler implements ActionListener {
             int sel = ((int) srcTable.getValueAt(selection[0], 0));
             String query = "DELETE FROM tb\n" + "WHERE id = " + sel + ";";
             try {
-                Statement sm = Ultility.getDefaultConnection().createStatement();
+                Statement sm = Ulti.getConnectionDefault().createStatement();
                 sm.execute(query);
                 System.out.println("DELETE succeeded.");
             } catch (Exception e) {
@@ -74,7 +74,7 @@ public class SqlHandler implements ActionListener {
             String query = "SELECT serial FROM tb\n" + "WHERE id = " + sel + ";";
             
             try {
-                Statement sm = Ultility.getDefaultConnection().createStatement();
+                Statement sm = Ulti.getConnectionDefault().createStatement();
                 ResultSet rs = sm.executeQuery(query);
 
                 if (rs.first()) {
@@ -88,7 +88,7 @@ public class SqlHandler implements ActionListener {
                     ImageCentralPixels img = (ImageCentralPixels) ois.readObject();
                     System.out.println(img);
 
-                    src.ta_input.setText(img.toString());
+                    src.taInput.setText(img.toString());
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -99,13 +99,13 @@ public class SqlHandler implements ActionListener {
 
     public void Save() {
         try {
-            Connection conn = Ultility.getDefaultConnection();
+            Connection conn = Ulti.getConnectionDefault();
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream out = null;
             byte[] bytes = null;
                 
-            ImageCentralPixels img = ImageCentralPixels.parseImageCP(src.ta_input.getText());
+            ImageCentralPixels img = ImageCentralPixels.parseImageCP(src.taInput.getText());
 
             out = new ObjectOutputStream(bos);
             out.writeObject(img);
@@ -134,9 +134,9 @@ public class SqlHandler implements ActionListener {
 
     public void Show() {
         try {
-            Statement st = Ultility.getDefaultConnection().createStatement();
+            Statement st = Ulti.getConnectionDefault().createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM tb;");
-            srcTable.setModel(Ultility.buildTableModel(rs));
+            srcTable.setModel(Ulti.buildTableModel(rs));
         } catch (Exception exx) {
             exx.printStackTrace();
         }
