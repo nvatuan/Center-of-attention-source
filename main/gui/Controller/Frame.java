@@ -7,9 +7,7 @@ import java.awt.event.*;
 import main.gui.Controller.panel.*;
 import main.gui.Controller.Canvas;
 import main.gui.Constants.MyHeightWidth;
-import main.gui.Event.HistoryButtonEvent;
-import main.gui.Event.ReformatButtonEvent;
-import main.gui.Event.StartButtonEvent;
+import main.gui.Event.*;
 import main.algo.ImageCentralPixels;
 
 public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi, PanelCenter {
@@ -53,20 +51,23 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         //
         c.gridx = 0;
         c.gridy = 1;
-        pnlNishi.add(Log, c);
+        pnlNishi.add(ProblemPrompt, c);
+        ProblemPromptButtonEvent objProblemPrompt = new ProblemPromptButtonEvent(this);
+        ProblemPrompt.addActionListener(objProblemPrompt);
         //
         c.gridx = 0;
         c.gridy = 2;
         pnlNishi.add(History, c);
-        HistoryButtonEvent obj = new HistoryButtonEvent(this);
-        History.addActionListener(obj);
+        HistoryButtonEvent objHistory = new HistoryButtonEvent(this);
+        History.addActionListener(objHistory);
         //
-        JButton About = new JButton("About us");
         c.weighty = 0.5;
         c.anchor = GridBagConstraints.LAST_LINE_END;
         c.gridx = 0;
         c.gridy = 3;
         pnlNishi.add(About, c);
+        AboutUsButtonEvent objAbout = new AboutUsButtonEvent(this);
+        About.addActionListener(objAbout);
 
         return pnlNishi;
     }

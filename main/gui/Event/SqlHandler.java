@@ -82,8 +82,8 @@ public class SqlHandler implements ActionListener {
                     ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
                     ObjectInputStream ois = new ObjectInputStream(bais);
 
-                    //OutputStream os = new FileOutputStream("TestClone.txt");
-                    //os.write(bytes);
+                    OutputStream os = new FileOutputStream("TestClone.txt");
+                    os.write(bytes);
 
                     ImageCentralPixels img = (ImageCentralPixels) ois.readObject();
                     System.out.println(img);
@@ -112,8 +112,8 @@ public class SqlHandler implements ActionListener {
             out.flush();
             bytes = bos.toByteArray();
                     
-            //OutputStream os = new FileOutputStream("TestSave.txt");
-            //os.write(bytes);
+                OutputStream os = new FileOutputStream("TestSave.txt");
+                os.write(bytes);
 
             Blob bl = conn.createBlob();
             bl.setBytes(1, bytes);
