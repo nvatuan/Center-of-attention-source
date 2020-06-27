@@ -4,18 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
 import main.gui.Controller.panel.*;
-
 import main.gui.Controller.Canvas;
 import main.gui.Constants.MyHeightWidth;
 import main.gui.Event.HistoryButtonEvent;
 import main.gui.Event.ReformatButtonEvent;
 import main.gui.Event.StartButtonEvent;
+import main.algo.ImageCentralPixels;
 
 public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi, PanelCenter {
     public JFrame mainFrame = new JFrame("Center of Attention");
-    private Canvas canvas = null;
+    public ImageCentralPixels img = null;
+    public Canvas canvas = null;
 
     public Frame() {
         mainFrame.setSize(MyHeightWidth.W, MyHeightWidth.H);
@@ -74,7 +74,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
     @Override
     public JPanel panelHigashi() {
         Label.can_chinh();
-        TextField.to_vien();
+        TextArea.to_vien();
         JPanel pnlHigashi = new JPanel();
         pnlHigashi.setLayout(new GridBagLayout());
         pnlHigashi.setBorder(BorderFactory.createTitledBorder("Input & Output"));
@@ -162,7 +162,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         canvasContainer.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
         canvasContainer.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 
-        canvas = new Canvas();
+        canvas = new Canvas(this);
         canvasContainer.add(canvas, BorderLayout.CENTER);
         canvasContainer.addComponentListener(new ComponentAdapter() {
             @Override
@@ -175,18 +175,6 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
                 canvasContainer.revalidate();
             }
         });
-//        pnl_center.setBackground(Color.red);
-//        ImageIcon image1 = null;
-//        try{
-//            image1 = new ImageIcon(getClass().getResource("../a1.jpg"));
-//            JLabel lb_center = new JLabel(image1);
-//            lb_center.setOpaque(true);
-//            pnl_center.add(lb_center);
-//        }catch (Exception e)
-//        {
-//            JOptionPane.showMessageDialog(null,"Lỗi chèn ảnh vào panel center");
-//            JOptionPane.showMessageDialog(null,"" + (image1 == null));
-//        }
         return canvasContainer;
     }
 }

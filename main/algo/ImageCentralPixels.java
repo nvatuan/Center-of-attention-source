@@ -92,10 +92,10 @@ public class ImageCentralPixels extends Image implements Serializable {
                         this.updateBorder(ih, iw, colour, border, visited);
 
         // -- 2nd BFS wave
-        int max_depth = 0;
+        int maxDepth = 0;
 
-        int[] depth_of = new int[this.height * this.width];
-        Arrays.fill(depth_of, -1);
+        int[] depthOf = new int[this.height * this.width];
+        Arrays.fill(depthOf, -1);
 
         LinkedList<PairRowColumn> queue      = new LinkedList<PairRowColumn>();
         LinkedList<Integer>       queueDepth = new LinkedList<Integer>();
@@ -112,10 +112,10 @@ public class ImageCentralPixels extends Image implements Serializable {
             queueDepth.removeFirst();
 
             if (!valid(ih, iw, colour)) continue;
-            if (depth_of[this.pairToImageIndex(ih, iw)] != -1) continue;
+            if (depthOf[this.pairToImageIndex(ih, iw)] != -1) continue;
 
-            max_depth = max(max_depth, depth);
-            depth_of[this.pairToImageIndex(ih, iw)] = depth;
+            maxDepth = max(maxDepth, depth);
+            depthOf[this.pairToImageIndex(ih, iw)] = depth;
             
             queue.addLast(new PairRowColumn(ih + 1, iw));
             queueDepth.addLast(depth + 1);
@@ -130,7 +130,7 @@ public class ImageCentralPixels extends Image implements Serializable {
         // -- scoop answer
         ArrayList<Integer> answerArrList = new ArrayList<Integer>();
         for (int i = 0; i < this.height * this.width; i++)
-            if (depth_of[i] == max_depth) answerArrList.add(i);
+            if (depthOf[i] == maxDepth) answerArrList.add(i);
         
         int[] answer = new int[answerArrList.size()];
         for (int i = 0; i < answerArrList.size(); i++)

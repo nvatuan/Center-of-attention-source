@@ -8,20 +8,20 @@ import main.gui.Controller.Frame;
 import main.algo.ImageCentralPixels;
 
 public class StartButtonEvent implements ActionListener {
-    public Frame obj;
+    public Frame frame;
     public StartButtonEvent(Frame obj) {
-        this.obj = obj;
+        this.frame = obj;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String str = obj.taInput.getText();
+        String str = frame.taInput.getText();
 
         String resultString = "";
         try {
-            ImageCentralPixels img = ImageCentralPixels.parseImageCP(str);
+            frame.img = ImageCentralPixels.parseImageCP(str);
 
-            int[] result = img.centralPixels(img.queriedColor);
+            int[] result = frame.img.centralPixels(frame.img.queriedColor);
             //
             resultString = "{";
             for (int i = 0; i < result.length; i++) {
@@ -33,7 +33,9 @@ public class StartButtonEvent implements ActionListener {
             JOptionPane.showMessageDialog(null, "INPUT contains invalid characters. Please input only numbers", "Error: parsing Input", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
         } finally {
-            obj.taOutput.setText(resultString);
+            frame.taOutput.setText(resultString);
         }
+
+        frame.canvas.repaint();
     }
 }

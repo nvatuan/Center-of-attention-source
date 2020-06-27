@@ -7,7 +7,7 @@ import java.awt.*;
 // import from my packages
 import main.gui.Constants.MyFont;
 
-public class TextField {
+public class TextArea {
     public static JTextArea taInput = new JTextArea();
     public static JTextArea taOutput = new JTextArea();
     static void to_vien() {
