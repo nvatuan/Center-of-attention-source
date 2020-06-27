@@ -1,4 +1,4 @@
-//package main.algo.drawing;
+package main.algo.drawing;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -15,60 +15,30 @@ import java.util.List;
 import java.util.HashMap;
 
 public class IntegerRangeToColorRange {
-    public static HashMap<Integer, Color> convertRange(int[] intArray) {
+    public static final float SATURATE = 1.0f;
+    public static final float BRIGHTNESS = 1.0f;
+    public static final float HUE_RANGE_START = 0.0f;
+    public static final float HUE_RANGE_END   = 1.0f;
+
+    public static HashMap<Integer, Color> getColorMapping(int[] intArray) {
         // -- Collecting distinct integers and sort them
         List<Integer> list = Arrays.stream(intArray).boxed().distinct().collect(Collectors.toList());
         Collections.sort(list);
         // -- Use hue circle to map integer with colors, more details under this link
-        // [https://stackoverflow.com/questions/46928277/trying-to-convert-integer-range-to-rgb-color]
+        // The following code uses the HSB ColorRange to map
+        HashMap<Integer, Color> hashMap = new HashMap<Integer, Color>();
+        
         int n = list.size();
+        for (int i = 0; i < n; i++) {
+            float hue = (HUE_RANGE_END - HUE_RANGE_START)/n*i + HUE_RANGE_START;
+            hashMap.put(list.get(i), Color.getHSBColor(hue, SATURATE, BRIGHTNESS));
+        }
 
-
-        System.out.println(list);
-
-        return new HashMap<Integer, Color>();
+        return hashMap;
     }
 
-    // This is going to take a day or two if i go on a rampage researching how RGB and HSL work
-    // So I decided learning is not appropriate now.
-    // With regards to [http://www.camick.com/java/source/HSLColor.java]
-    // and their amazing Blog post [https://tips4java.wordpress.com/2009/07/05/hsl-color/]
-    // I have taken liberty to adjust the code based on my needs.
-    // ---- COPIED CODE STARTS HERE ---------------
-    public static Color HueToColor(float h) {
-        float s = 1.0f;
-        float l = 0.5f;
-        float alpha = 1.0f;
-		h = h % 3.6f;
-
-		float q = 0;
-
-		if (l < 0.5) q = l * (1 + s);
-		else q = (l + s) - (s * l);
-
-		float p = 2 * l - q;
-
-		float r = HueComponentToRGBComponent(p, q, h + (1.0f / 3.0f));
-		float g = HueComponentToRGBComponent(p, q, h);
-		float b = HueComponentToRGBComponent(p, q, h - (1.0f / 3.0f));
-
-		r = Math.min(r, 1.0f);
-		g = Math.min(g, 1.0f);
-		b = Math.min(b, 1.0f);
-
-		return new Color(r, g, b, alpha);
-	}
-
-	private static float HueComponentToRGBComponent(float p, float q, float h) {
-		if (h < 0) h += 1;
-		if (h > 1) h -= 1;
-		if (6 * h < 1) return p + ((q - p) * 6 * h);
-		if (2 * h < 1) return q;
-		if (3 * h < 2) return p + ( (q - p) * 6 * ((2.0f / 3.0f) - h) );
-   		return p;
-    }
-    // ---- COPIED CODE ENDS HERE ---------------
-
+    // --- TESTING
+    /*
     public static void main(String s[]) {
         IntegerRangeToColorRange.convertRange(new int[] {1 ,1 ,6 ,1 ,2 ,5 ,2 ,1 ,2 ,1 ,5 ,4 ,3 ,2 ,1});
         JFrame frame = new JFrame();
@@ -87,9 +57,10 @@ public class IntegerRangeToColorRange {
             float f = sc.nextFloat();
             //panel.setBackground(HueToColor(f));
             //System.out.println(HueToColor(f));
-            panel.setBackground(new Color(1.0f - 1.0f/(f*10), f, 0f));
-            System.out.println(new Color(1.0f - 1.0f/(f*10), f, 0f));
+            panel.setBackground(Color.getHSBColor(f, 0.7f, 1f));
+            System.out.println(Color.getHSBColor(f, 0.7f, 1f));
             panel.repaint();
         }
     }
+    */
 }

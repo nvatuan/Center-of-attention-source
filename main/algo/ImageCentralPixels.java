@@ -11,6 +11,9 @@ import main.algo.PairRowColumn;
 
 public class ImageCentralPixels extends Image implements Serializable {
     public int queriedColor;
+    // -- 
+    private int[] depthOf = null;
+    public int[] getDepthOf() { return depthOf; } 
     // -- constructors
     public ImageCentralPixels() { super(); }
     public ImageCentralPixels(int w, int h) { super(w, h); }
@@ -94,7 +97,7 @@ public class ImageCentralPixels extends Image implements Serializable {
         // -- 2nd BFS wave
         int maxDepth = 0;
 
-        int[] depthOf = new int[this.height * this.width];
+        depthOf = new int[this.height * this.width];
         Arrays.fill(depthOf, -1);
 
         LinkedList<PairRowColumn> queue      = new LinkedList<PairRowColumn>();
