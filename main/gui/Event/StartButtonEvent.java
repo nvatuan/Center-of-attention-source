@@ -21,6 +21,17 @@ public class StartButtonEvent implements ActionListener {
         try {
             frame.img = ImageCentralPixels.parseImageCP(str);
 
+            // -- reformat the input
+            String reformat = "";
+            reformat += frame.img.getWidth() + " " + frame.img.getHeight() + "\n" + frame.img.queriedColor + "\n";
+            for (int i = 0; i < frame.img.getHeight(); i++)
+                for (int j = 0; j < frame.img.getWidth(); j++) {
+                    reformat += frame.img.getPixels()[frame.img.pairToImageIndex(i, j)];
+                    reformat += (j + 1 == frame.img.getWidth() ? '\n' : ' ');
+                }
+            frame.taInput.setText(reformat);
+            // 
+
             int[] result = frame.img.centralPixels(frame.img.queriedColor);
             //
             resultString = "{";
@@ -30,9 +41,12 @@ public class StartButtonEvent implements ActionListener {
             }
             resultString += "}";
         } catch (NumberFormatException nfex) {
-            JOptionPane.showMessageDialog(null, "INPUT contains invalid characters. Please input only numbers", "Error: parsing Input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Dữ liệu vào chỉ chấp nhận các số nguyên, các ký tự khoảng trống và các ký tự xuống dòng.", "ERROR: Ký tự không hợp lệ trong INPUT", JOptionPane.ERROR_MESSAGE);
             //System.out.println(frame.mainFrame.getSize());
+        } catch (IllegalArgumentException iaex) {
+            JOptionPane.showMessageDialog(null, "Hai số nguyên đầu (Width và Height) phải là số nguyên dương.", "ERROR: Giá trị không hợp lệ trong INPUT", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
+            ex.printStackTrace();
         } finally {
             frame.taOutput.setText(resultString);
         }

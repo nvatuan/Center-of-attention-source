@@ -1,5 +1,3 @@
-::xcopy /E /I /Y .\main\img\* out\
-
 javac -encoding utf-8 -d out main/algo/*.java
 
 javac -encoding utf-8 -d out main/gui/ComponentDesign/*.java

@@ -24,7 +24,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         mainFrame.setLayout(new BorderLayout(10, 5));
 
         // -- add JMenubar vào trong frame
-        mainFrame.setJMenuBar(add());
+        // mainFrame.setJMenuBar(add());
 
         mainFrame.add(BorderLayout.CENTER, panelCenter());
         mainFrame.add(BorderLayout.WEST, panelNishi());

@@ -20,19 +20,21 @@ public class ImageCentralPixels extends Image implements Serializable {
     public ImageCentralPixels(int w, int h, int[] p) { super(w, h, p); }
     public ImageCentralPixels(int w, int h, int[] p, int k) { super(w, h, p); this.queriedColor = k; }
     // -- create
-    public static ImageCentralPixels parseImageCP(String st) throws NumberFormatException, Exception {
+    public static ImageCentralPixels parseImageCP(String st) throws NumberFormatException, IllegalArgumentException, Exception {
         String stringHolder = st.trim(); 
         String[] parts = stringHolder.split("\\s+");
         int h = 0, w = 0, k = 0;
         int[] p = null;
         //
         h = Integer.parseInt(parts[0]); 
-        w = Integer.parseInt(parts[1]); 
+        w = Integer.parseInt(parts[1]);
+        if (h <= 0 || w <= 0) throw new IllegalArgumentException();
+        
         k = Integer.parseInt(parts[2]); 
         p = new int[h*w];
         for(int i = 0; i < h*w ; i++) {
             if (i + 3 < parts.length) p[i] = Integer.parseInt(parts[3+i]);
-            else p[i + 3] = 0;
+            else p[i] = 0;
         }
         return new ImageCentralPixels(h, w, p, k);
     }

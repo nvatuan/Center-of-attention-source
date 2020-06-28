@@ -9,26 +9,25 @@ import java.sql.ResultSetMetaData;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
-public class Ulti {
-    public static Connection getConnectionDefault() {
+public class Util {
+    public static Connection getConnectionDefault() throws SQLException {
         return getConnectionWithParams("javabase", "root", "root");
     }
     
-    public static Connection getConnectionWithParams(String database, String user, String pass) {
+    public static Connection getConnectionWithParams(String database, String user, String pass) throws SQLException {
         String url = "jdbc:mysql://localhost:3306/" + database;
         String username = user;
         String password = pass;
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
-            System.out.println("@main.database.Conn: Success!");
+            System.out.println("@main.database.Ulti: Connect success!");
             return connection;
         }
         catch (SQLException e) {
-            System.out.println("@main.database.Conn: Error!");
-            e.printStackTrace();
-            return null;
+            System.out.println("@main.database.Ulti: Connect error!");
+            //e.printStackTrace();
+            throw new SQLException(e);
         }
-
     }
 
     public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {

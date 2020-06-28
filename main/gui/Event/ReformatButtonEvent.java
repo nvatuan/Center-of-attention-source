@@ -36,10 +36,7 @@ public class ReformatButtonEvent implements ActionListener {
             {
                 temp[n*m] = "0";
             }
-        }catch (Exception e1)
-        {
-            //JOptionPane.showMessageDialog(null,"Format error in" + count + "line");
-        }
+        } catch (Exception e1) {}
         arr = "" + n + " " + m + "\n" + k +"\n";
         for (int c = 0, i = 0; i < n*m; i++) {
             arr += p[i];

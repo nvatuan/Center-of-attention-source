@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 
@@ -20,7 +21,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import main.algo.ImageCentralPixels;
-import main.database.Ulti;
+import main.database.Util;
 
 public class HistoryButtonEvent implements ActionListener {
     public main.gui.Controller.Frame obj;
@@ -71,9 +72,16 @@ public class HistoryButtonEvent implements ActionListener {
         historyScroll.setViewportView(historyTable);
 
         handler = new SqlHandler(obj, historyTable);
-        handler.Show();
+        try {
+            handler.Show();
 
-        historyFrame.setModalityType(ModalityType.APPLICATION_MODAL);
-        historyFrame.setVisible(true);
+            historyFrame.setModalityType(ModalityType.APPLICATION_MODAL);
+            historyFrame.setVisible(true);
+        } catch (SQLException sqlex) {
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi kết nối đến MySQL database. Thông tin thêm:\n[" + sqlex.getMessage() + "]", "ERROR: Lỗi kết nối đến MySQL DB", JOptionPane.ERROR_MESSAGE);
+            historyFrame.dispose();
+        } catch (Exception ex) {
+            historyFrame.dispose();
+        }
     }
 }

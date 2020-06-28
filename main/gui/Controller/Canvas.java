@@ -30,7 +30,7 @@ public class Canvas extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         if (frame.img == null) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("../../img/Winter.jpg"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("../../img/Cover.jpg"));
             Image img = icon.getImage();
 
             int edge = Math.min(this.getHeight(), this.getWidth());

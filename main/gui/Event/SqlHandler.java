@@ -2,11 +2,14 @@ package main.gui.Event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 
@@ -18,7 +21,7 @@ import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import main.database.Ulti;
+import main.database.Util;
 import main.gui.Controller.Frame;
 import main.algo.ImageCentralPixels;
 
@@ -29,36 +32,42 @@ public class SqlHandler implements ActionListener {
     //
     @Override
     public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "Clone") {
-            Clone();
-            //dispose();
-            //Show();
-			return;
-		}
-		if (e.getActionCommand() == "Save") {
-			Save();
-			Show();
-			return;
-		}
-		if (e.getActionCommand() == "Delete") {
-			Delete();
-			Show();
-			return;
-		}
-        Show();
+        try {
+            if (e.getActionCommand() == "Clone") {
+                Clone();
+                return;
+            }
+            if (e.getActionCommand() == "Save") {
+             Save();
+             Show();
+             return;
+            }
+            if (e.getActionCommand() == "Delete") {
+                Delete();
+                Show();
+                return;
+            }
+            Show();
+        } catch (SQLException sqlex) {
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đang thao tác với MySQL DB. Thông tin thêm:\n[" + sqlex.getMessage() + "]", "ERROR: Kết nối với MySQL DB bị ngắt", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+        }
     }
 
     // --
-    public void Delete() {
+    public void Delete() throws SQLException {
         int[] selection = srcTable.getSelectedRows();
         if (selection.length == 0) {
         } else {
             int sel = ((int) srcTable.getValueAt(selection[0], 0));
             String query = "DELETE FROM tb\n" + "WHERE id = " + sel + ";";
             try {
-                Statement sm = Ulti.getConnectionDefault().createStatement();
+                Statement sm = Util.getConnectionDefault().createStatement();
                 sm.execute(query);
                 System.out.println("DELETE succeeded.");
+            } catch (SQLException sqlex) {
+                System.out.println("DELETE failed.");
+                throw new SQLException(sqlex);
             } catch (Exception e) {
                 System.out.println("DELETE failed.");
                 e.printStackTrace();
@@ -66,7 +75,7 @@ public class SqlHandler implements ActionListener {
         }
     }
 
-    public void Clone() {
+    public void Clone() throws SQLException {
         int[] selection = srcTable.getSelectedRows();
         if (selection.length == 0) {
         } else {
@@ -74,7 +83,7 @@ public class SqlHandler implements ActionListener {
             String query = "SELECT serial FROM tb\n" + "WHERE id = " + sel + ";";
             
             try {
-                Statement sm = Ulti.getConnectionDefault().createStatement();
+                Statement sm = Util.getConnectionDefault().createStatement();
                 ResultSet rs = sm.executeQuery(query);
 
                 if (rs.first()) {
@@ -86,10 +95,12 @@ public class SqlHandler implements ActionListener {
                     //os.write(bytes);
 
                     ImageCentralPixels img = (ImageCentralPixels) ois.readObject();
-                    System.out.println(img);
+                    //System.out.println(img);
 
                     src.taInput.setText(img.toString());
                 }
+            } catch (SQLException sqlex) {
+                throw new SQLException(sqlex);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 return;
@@ -97,9 +108,9 @@ public class SqlHandler implements ActionListener {
         }
     }
 
-    public void Save() {
+    public void Save() throws SQLException {
         try {
-            Connection conn = Ulti.getConnectionDefault();
+            Connection conn = Util.getConnectionDefault();
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream out = null;
@@ -132,11 +143,14 @@ public class SqlHandler implements ActionListener {
         }
     }
 
-    public void Show() {
+    public void Show() throws SQLException {
         try {
-            Statement st = Ulti.getConnectionDefault().createStatement();
+            Statement st = Util.getConnectionDefault().createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM tb;");
-            srcTable.setModel(Ulti.buildTableModel(rs));
+            srcTable.setModel(Util.buildTableModel(rs));
+            srcTable.revalidate();
+        } catch (SQLException sqlex) {
+            throw new SQLException(sqlex);
         } catch (Exception exx) {
             exx.printStackTrace();
         }
