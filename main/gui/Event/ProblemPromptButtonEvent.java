@@ -35,7 +35,7 @@ public class ProblemPromptButtonEvent implements ActionListener {
         String content = "" +
         "<h1 style=\"text-align: center;\"><strong>CENTRE OF ATTENTION</strong></h1>" +
         "<h2 style=\"text-align: justify;\"><strong>INPUT:</strong></h2>" +
-        "<p style=\"text-align: justify;\">Lần lượt l&agrave;, ba số <em>nguy&ecirc;n</em> <strong><em>H, W, K</em></strong> v&agrave; một mảng số nguy&ecirc;n c&oacute; <strong><em>H*W</em> </strong>phần tử l&agrave; <strong><em>P[]</em></strong>.<strong><em> H, W</em></strong> được đảm bảo l&agrave; số dương.</p>" +
+        "<p style=\"text-align: justify;\">Lần lượt l&agrave;, ba số <em>nguy&ecirc;n</em> <strong><em>H, W, K</em></strong> v&agrave; một mảng số nguy&ecirc;n c&oacute; <strong><em>H*W</em> </strong>phần tử l&agrave; <strong><em>P[]</em></strong>.<strong><em> H, W</em></strong> l&agrave; số dương.</p>" +
         "<br><h2 style=\"text-align: justify;\"><strong>OUTPUT:</strong></h2>" +
         "<p style=\"text-align: justify;\">Một mảng số nguy&ecirc;n <strong><em>A[]</em></strong></p>" +
         "<br><h2 style=\"text-align: justify;\"><strong>Y&Ecirc;U CẦU B&Agrave;I TO&Aacute;N:</strong></h2>" +

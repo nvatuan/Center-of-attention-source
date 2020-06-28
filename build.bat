@@ -1,8 +1,6 @@
 ::xcopy /E /I /Y .\main\img\* out\
 
-javac -encoding utf-8 -d out main/algo/PairRowColumn.java
-javac -encoding utf-8 -d out main/algo/Image.java
-javac -encoding utf-8 -d out main/algo/ImageCentralPixels.java
+javac -encoding utf-8 -d out main/algo/*.java
 
 javac -encoding utf-8 -d out main/gui/ComponentDesign/*.java
 javac -encoding utf-8 -d out main/gui/Constants/*.java

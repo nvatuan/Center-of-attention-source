@@ -8,6 +8,7 @@ import main.gui.Controller.panel.*;
 import main.gui.Controller.Canvas;
 import main.gui.Constants.MyHeightWidth;
 import main.gui.Event.*;
+
 import main.algo.ImageCentralPixels;
 
 public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi, PanelCenter {
@@ -128,6 +129,10 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         CopyPasteButtonEvent cpeHandler = new CopyPasteButtonEvent(this);
         InputPaste.addActionListener(cpeHandler);
         OutputCopy.addActionListener(cpeHandler);
+        
+        InputOutputHelpEvent iohHandler = new InputOutputHelpEvent();
+        InputHelp.addActionListener(iohHandler);
+        OutputHelp.addActionListener(iohHandler);
 
         //ReformatButtonEvent RF_Event = new ReformatButtonEvent(this);
         //Reformat.addActionListener(RF_Event);
