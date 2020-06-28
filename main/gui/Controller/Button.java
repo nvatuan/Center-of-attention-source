@@ -3,19 +3,38 @@ package main.gui.Controller;
 import javax.swing.*;
 
 public class Button extends Label {
-    static JButton Start = new JButton("Start");
-    static JButton ProblemPrompt = new JButton("Problem Prompt");
-    static JButton History = new JButton("History");
-    static JButton About = new JButton("About us");
-    static JButton Reformat = new JButton("Reformat");
+    JButton Start = new JButton("Start");
+    JButton ProblemPrompt = new JButton("Problem Prompt");
+    JButton History = new JButton("History");
+    JButton About = new JButton("About us");
+    JButton Reformat = new JButton("Reformat");
 
-    static JButton InputHelp = new JButton("?");
-    static JButton OutputHelp = new JButton("?");
+    JButton InputHelp = new JButton("?");
+    JButton OutputHelp = new JButton("?");
 
-    static JButton InputPaste = new JButton("Paste");
-    static JButton OutputCopy = new JButton("Copy");
+    JButton InputPaste = new JButton("Paste");
+    JButton OutputCopy = new JButton("Copy");
 
-    static void to_vien() {
+    public Button() {
+        super();
+        Start.setFocusPainted(false);
+        ProblemPrompt.setFocusPainted(false);
+        History.setFocusPainted(false);
+        About.setFocusPainted(false);
+        Reformat.setFocusPainted(false);
+        InputHelp.setFocusPainted(false);
+        InputPaste.setFocusPainted(false);
+        OutputHelp.setFocusPainted(false);
+        OutputCopy.setFocusPainted(false);
+
+        InputHelp.setActionCommand("Input?");
+        OutputHelp.setActionCommand("Output?");
+
+        InputPaste.setActionCommand("Paste");
+        OutputCopy.setActionCommand("Copy");
+    }
+
+    void toVien() {
         // -- tô viền button
         Start.setBorder(BorderFactory.createRaisedBevelBorder());
         // Start.setFont(new Font("Courier",Font.BOLD,10));

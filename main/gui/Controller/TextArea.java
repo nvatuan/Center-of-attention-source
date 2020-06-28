@@ -8,9 +8,11 @@ import java.awt.*;
 import main.gui.Constants.MyFont;
 
 public class TextArea {
-    public static JTextArea taInput = new JTextArea();
-    public static JTextArea taOutput = new JTextArea();
-    static void to_vien() {
+    public JTextArea taInput = new JTextArea();
+    public JTextArea taOutput = new JTextArea();
+
+    public TextArea() {
+        super();
 //      tf_input.setPreferredSize(new Dimension(200,200));
 //      tf_output.setPreferredSize(new Dimension(200,200));
         taInput.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -22,5 +24,6 @@ public class TextArea {
         taOutput.setPreferredSize(taOutput.getSize());
         taOutput.setFont(MyFont.Monospaced);
         taOutput.setLineWrap(true);
+        taOutput.setEditable(false);
     }
 }

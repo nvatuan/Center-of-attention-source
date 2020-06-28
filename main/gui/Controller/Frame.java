@@ -16,6 +16,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
     public Canvas canvas = null;
 
     public Frame() {
+        super();
         mainFrame.setSize(MyHeightWidth.W, MyHeightWidth.H);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
@@ -34,14 +35,13 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
 
     @Override
     public JPanel panelNishi() {
-        Button.to_vien();
         JPanel pnlNishi = new JPanel();
         pnlNishi.setBorder(BorderFactory.createTitledBorder("Function"));
         pnlNishi.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.ipady = 15;
-        c.ipadx = 30;
-        c.insets = new Insets(20, 10, 10, 10);
+        //c.ipadx = 30;
+        c.insets = new Insets(10, 10, 10, 10);
         //
         c.gridx = 0;
         c.gridy = 0;
@@ -70,13 +70,12 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         AboutUsButtonEvent objAbout = new AboutUsButtonEvent(this);
         About.addActionListener(objAbout);
 
+        pnlNishi.setPreferredSize(new Dimension(150, 0));
         return pnlNishi;
     }
 
     @Override
     public JPanel panelHigashi() {
-        Label.can_chinh();
-        TextArea.to_vien();
         JPanel pnlHigashi = new JPanel();
         pnlHigashi.setLayout(new BoxLayout(pnlHigashi, BoxLayout.Y_AXIS));
         pnlHigashi.setBorder(BorderFactory.createTitledBorder("Input & Output"));
@@ -124,6 +123,11 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
 
         pnlHigashi.add(container);
         // ----------------------------------------------
+
+        // -- add EventHandler to buttons
+        CopyPasteButtonEvent cpeHandler = new CopyPasteButtonEvent(this);
+        InputPaste.addActionListener(cpeHandler);
+        OutputCopy.addActionListener(cpeHandler);
 
         //ReformatButtonEvent RF_Event = new ReformatButtonEvent(this);
         //Reformat.addActionListener(RF_Event);

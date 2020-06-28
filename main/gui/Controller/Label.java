@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Label extends TextArea {
-    static JLabel lblInput = new JLabel("INPUT");
-    static JLabel lblOutput = new JLabel("OUTPUT");
-    static JLabel lblQuestion1 = new JLabel("?");
-    static JLabel lblQuestion2 = new JLabel("?");
+    JLabel lblInput = new JLabel("INPUT");
+    JLabel lblOutput = new JLabel("OUTPUT");
+    JLabel lblQuestion1 = new JLabel("?");
+    JLabel lblQuestion2 = new JLabel("?");
 
-    static void can_chinh()
-    {
+    public Label() {
+        super();
         lblInput.setFont(new Font("Arial", Font.BOLD,15));
         lblInput.setHorizontalAlignment(JLabel.CENTER);
 
@@ -23,4 +23,5 @@ public class Label extends TextArea {
         lblQuestion2.setFont(new Font("Arial", Font.BOLD,20));
         lblQuestion2.setToolTipText("Nhập OUTPUT");
     }
+
 }
