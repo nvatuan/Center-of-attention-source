@@ -55,7 +55,8 @@ public class HistoryButtonEvent implements ActionListener {
         Export_Data.setActionCommand("Export");
         JButton Save = new JButton("Save Current");
         Save.setActionCommand("Save");
-        // -- event
+
+        // -- event handling
         Clone_Input.addActionListener(new SqlHandler(obj, historyTable));
         Delete.addActionListener(new SqlHandler(obj, historyTable));
         Save.addActionListener(new SqlHandler(obj, historyTable));
