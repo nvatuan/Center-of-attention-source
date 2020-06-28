@@ -23,10 +23,6 @@ public class ProblemPromptButtonEvent implements ActionListener {
         ProblemPromptFrame.setLocationRelativeTo(null);
 
 
-
-
         ProblemPromptFrame.setVisible(true);
-
-
     }
 }
