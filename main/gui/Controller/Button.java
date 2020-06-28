@@ -1,19 +1,20 @@
 package main.gui.Controller;
 
 import javax.swing.*;
+import java.awt.Insets;
 
 public class Button extends Label {
-    JButton Start = new JButton("Start");
-    JButton ProblemPrompt = new JButton("Problem Prompt");
-    JButton History = new JButton("History");
+    JButton Start = new JButton("Thực thi");
+    JButton ProblemPrompt = new JButton("Chi tiết Bài toán");
+    JButton History = new JButton("Dữ liệu Database");
     JButton About = new JButton("About us");
     JButton Reformat = new JButton("Reformat");
 
     JButton InputHelp = new JButton("?");
     JButton OutputHelp = new JButton("?");
 
-    JButton InputPaste = new JButton("Paste");
-    JButton OutputCopy = new JButton("Copy");
+    JButton InputPaste = new JButton("Paste from Clipboard");
+    JButton OutputCopy = new JButton("Copy to Clipboard");
 
     public Button() {
         super();
@@ -31,7 +32,9 @@ public class Button extends Label {
         OutputHelp.setActionCommand("Output?");
 
         InputPaste.setActionCommand("Paste");
+        InputPaste.setMargin(new Insets(0, 0, 0, 0));
         OutputCopy.setActionCommand("Copy");
+        OutputCopy.setMargin(new Insets(0, 0, 0, 0));
     }
 
     void toVien() {
