@@ -22,7 +22,6 @@ public class ProblemPromptButtonEvent implements ActionListener {
         ProblemPromptFrame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         ProblemPromptFrame.setLocationRelativeTo(null);
 
-
         ProblemPromptFrame.setVisible(true);
     }
 }

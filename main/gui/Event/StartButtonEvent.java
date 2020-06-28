@@ -9,8 +9,8 @@ import main.algo.ImageCentralPixels;
 
 public class StartButtonEvent implements ActionListener {
     public Frame frame;
-    public StartButtonEvent(Frame obj) {
-        this.frame = obj;
+    public StartButtonEvent(Frame source) {
+        this.frame = source;
     }
 
     @Override
@@ -31,6 +31,7 @@ public class StartButtonEvent implements ActionListener {
             resultString += "}";
         } catch (NumberFormatException nfex) {
             JOptionPane.showMessageDialog(null, "INPUT contains invalid characters. Please input only numbers", "Error: parsing Input", JOptionPane.ERROR_MESSAGE);
+            //System.out.println(frame.mainFrame.getSize());
         } catch (Exception ex) {
         } finally {
             frame.taOutput.setText(resultString);

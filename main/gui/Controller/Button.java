@@ -8,6 +8,13 @@ public class Button extends Label {
     static JButton History = new JButton("History");
     static JButton About = new JButton("About us");
     static JButton Reformat = new JButton("Reformat");
+
+    static JButton InputHelp = new JButton("?");
+    static JButton OutputHelp = new JButton("?");
+
+    static JButton InputPaste = new JButton("Paste");
+    static JButton OutputCopy = new JButton("Copy");
+
     static void to_vien() {
         // -- tô viền button
         Start.setBorder(BorderFactory.createRaisedBevelBorder());

@@ -28,6 +28,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         mainFrame.add(BorderLayout.WEST, panelNishi());
         mainFrame.add(BorderLayout.EAST, panelHigashi());
         // mainFrame.pack();
+        mainFrame.setMinimumSize(new Dimension(700, 450));
         mainFrame.setVisible(true);
     }
 
@@ -45,15 +46,15 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
-        pnlNishi.add(Start, c);
-        StartButtonEvent sbe = new StartButtonEvent(this);
-        Start.addActionListener(sbe);
-        //
-        c.gridx = 0;
-        c.gridy = 1;
         pnlNishi.add(ProblemPrompt, c);
         ProblemPromptButtonEvent objProblemPrompt = new ProblemPromptButtonEvent(this);
         ProblemPrompt.addActionListener(objProblemPrompt);
+        //
+        c.gridx = 0;
+        c.gridy = 1;
+        pnlNishi.add(Start, c);
+        StartButtonEvent sbe = new StartButtonEvent(this);
+        Start.addActionListener(sbe);
         //
         c.gridx = 0;
         c.gridy = 2;
@@ -77,73 +78,56 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         Label.can_chinh();
         TextArea.to_vien();
         JPanel pnlHigashi = new JPanel();
-        pnlHigashi.setLayout(new GridBagLayout());
+        pnlHigashi.setLayout(new BoxLayout(pnlHigashi, BoxLayout.Y_AXIS));
         pnlHigashi.setBorder(BorderFactory.createTitledBorder("Input & Output"));
+        pnlHigashi.setPreferredSize(new Dimension(150, 0));
 
-        GridBagConstraints c = new GridBagConstraints();
+        JPanel container = null;
+        JPanel subContainer = null;
 
-        c.ipadx = 10;
-        c.ipady = 10;
-        c.insets = new Insets(10, 10, 0, 10);
-        c.fill = GridBagConstraints.VERTICAL;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
+        // -------------- INPUT section -----------------
+        container = new JPanel(new BorderLayout(3, 3));
+        container.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        subContainer = new JPanel();
+        subContainer.setLayout(new BoxLayout(subContainer, BoxLayout.X_AXIS));
+        
+        subContainer.add(lblInput);
+        subContainer.add(Box.createRigidArea(new Dimension(5, 0)));
+        subContainer.add(Box.createHorizontalGlue());
+        subContainer.add(InputHelp);
 
-        pnlHigashi.add(lblInput, c);
+        container.add(subContainer, BorderLayout.NORTH);
+        container.add(taInput, BorderLayout.CENTER);
+        container.add(InputPaste, BorderLayout.SOUTH);
 
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        pnlHigashi.add(lblQuestion1, c);
+        // -- add to parent container
+        pnlHigashi.add(container);
+        // -- add filler
+        pnlHigashi.add(Box.createRigidArea(new Dimension(0, 10)));
+        pnlHigashi.add(Box.createVerticalGlue());
+        // --
 
-        c.insets = new Insets(0, 10, 120, 10);
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 2;
-        c.gridheight = 1;
-        c.ipadx = 120;
-        c.ipady = 130;
-        pnlHigashi.add(taInput, c);
+        // -------------- OUTPUT section -----------------
+        container = new JPanel(new BorderLayout(3, 3));
+        container.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        subContainer = new JPanel();
+        subContainer.setLayout(new BoxLayout(subContainer, BoxLayout.X_AXIS));
+        
+        subContainer.add(lblOutput);
+        subContainer.add(Box.createRigidArea(new Dimension(5, 0)));
+        subContainer.add(Box.createHorizontalGlue());
+        subContainer.add(OutputHelp);
 
-        c.insets = new Insets(0, 10, 10, 10);
-        c.ipadx = 10;
-        c.ipady = 10;
-        c.fill = GridBagConstraints.VERTICAL;
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        pnlHigashi.add(lblOutput, c);
+        container.add(subContainer, BorderLayout.NORTH);
+        container.add(taOutput, BorderLayout.CENTER);
+        container.add(OutputCopy, BorderLayout.SOUTH);
 
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 2;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        pnlHigashi.add(lblQuestion2, c);
+        pnlHigashi.add(container);
+        // ----------------------------------------------
 
-        c.gridx = 0;
-        c.gridy = 3;
-        c.gridwidth = 2;
-        c.gridheight = 1;
-        c.ipadx = 120;
-        c.ipady = 130;
-        pnlHigashi.add(taOutput, c);
-
-        c.insets = new Insets(5, 10, 10, 10);
-        c.ipadx = 0;
-        c.ipady = 0;
-        c.gridx = 0;
-        c.gridy = 4;
-        c.gridwidth = 2;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        ReformatButtonEvent RF_Event = new ReformatButtonEvent(this);
-        Reformat.addActionListener(RF_Event);
-        pnlHigashi.add(Reformat, c);
+        //ReformatButtonEvent RF_Event = new ReformatButtonEvent(this);
+        //Reformat.addActionListener(RF_Event);
+        //pnlHigashi.add(Reformat, c);
 
         return pnlHigashi;
     }
