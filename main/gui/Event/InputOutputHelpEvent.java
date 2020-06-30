@@ -7,9 +7,12 @@ import javax.swing.JDialog;
 
 import main.gui.Constants.MyHelpDialog;
 
+// This class handles event when InputOutput Help button was pressed
 public class InputOutputHelpEvent implements ActionListener {
+    // ==== Constructor
+    // Default no arg constructor
     public InputOutputHelpEvent() {}
-    //
+    // ==== Overriden method
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog dial = null;

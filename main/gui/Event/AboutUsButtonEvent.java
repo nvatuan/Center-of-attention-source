@@ -1,7 +1,6 @@
 package main.gui.Event;
 
 import javax.swing.*;
-
 import java.awt.BorderLayout;
 import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
@@ -10,12 +9,16 @@ import javax.swing.JDialog;
 
 import main.gui.Controller.Frame;
 
+// This class contains Event handling for when `AboutUs` button is pressed
 public class AboutUsButtonEvent implements ActionListener {
+    // ==== Constructor
+    // Constructor pass a `main.gui.Controller.Frame` reference so data can be accessed
     public Frame obj;
     public AboutUsButtonEvent(Frame obj) {
         this.obj = obj;
     }
 
+    // ==== Overriden method
     @Override
     public void actionPerformed(ActionEvent e) {
         // -- Java supports HTML rendering so
@@ -37,7 +40,7 @@ public class AboutUsButtonEvent implements ActionListener {
                 "<li><em>Xử l&yacute; Event cho c&aacute;c n&uacute;t, text area, menu,...</em></li>" +
                 "</ul>" +
             "</html>";
-
+        // Display the info
         JOptionPane.showMessageDialog(null, message, "About us", JOptionPane.INFORMATION_MESSAGE);
     }
 }

@@ -25,36 +25,45 @@ import main.database.Util;
 import main.gui.Controller.Frame;
 import main.algo.ImageCentralPixels;
 
+// This class handles event when a button in the History Dialog is pressed
 public class SqlHandler implements ActionListener {
+    // ==== Fields
     private Frame src;
     public JTable srcTable;
+    // ==== Constructor
     public SqlHandler(Frame obj, JTable objTable) { this.src = obj; this.srcTable = objTable; }
-    //
+    // ==== Overriden method
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            if (e.getActionCommand() == "Clone") {
-                Clone();
-                return;
+            switch (e.getActionCommand()) {
+                // Button is "Clone Input"
+                case "Clone":
+                    Clone();
+                    break;
+                // Button is "Save to Database"
+                case "Save":
+                    Save();
+                    Show();
+                    break;
+                // Button is "Delete"
+                case "Delete":
+                    Delete();
+                    Show();
+                    break;
+                // Default behaviour
+                default:
+                    Show();
+                    break;
             }
-            if (e.getActionCommand() == "Save") {
-             Save();
-             Show();
-             return;
-            }
-            if (e.getActionCommand() == "Delete") {
-                Delete();
-                Show();
-                return;
-            }
-            Show();
         } catch (SQLException sqlex) {
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đang thao tác với MySQL DB. Thông tin thêm:\n[" + sqlex.getMessage() + "]", "ERROR: Kết nối với MySQL DB bị ngắt", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
         }
     }
 
-    // --
+    // ==== methods
+    // DELETE statement
     public void Delete() throws SQLException {
         int[] selection = srcTable.getSelectedRows();
         if (selection.length == 0) {
@@ -75,6 +84,7 @@ public class SqlHandler implements ActionListener {
         }
     }
 
+    // SELECT statement and parse the Blob object
     public void Clone() throws SQLException {
         int[] selection = srcTable.getSelectedRows();
         if (selection.length == 0) {
@@ -91,11 +101,7 @@ public class SqlHandler implements ActionListener {
                     ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
                     ObjectInputStream ois = new ObjectInputStream(bais);
 
-                    //OutputStream os = new FileOutputStream("TestClone.txt");
-                    //os.write(bytes);
-
                     ImageCentralPixels img = (ImageCentralPixels) ois.readObject();
-                    //System.out.println(img);
 
                     src.taInput.setText(img.toString());
                 }
@@ -108,6 +114,7 @@ public class SqlHandler implements ActionListener {
         }
     }
 
+    // Write object to a Blob object and INSERT statement
     public void Save() throws SQLException {
         try {
             Connection conn = Util.getConnectionDefault();
@@ -122,13 +129,9 @@ public class SqlHandler implements ActionListener {
             out.writeObject(img);
             out.flush();
             bytes = bos.toByteArray();
-                    
-            //OutputStream os = new FileOutputStream("TestSave.txt");
-            //os.write(bytes);
 
             Blob bl = conn.createBlob();
             bl.setBytes(1, bytes);
-
 
             PreparedStatement pst = conn.prepareStatement(
                 "INSERT INTO javabase.tb (serial, created) VALUES (?, NOW());"
@@ -143,6 +146,7 @@ public class SqlHandler implements ActionListener {
         }
     }
 
+    // a SELECT statement and a table model update
     public void Show() throws SQLException {
         try {
             Statement st = Util.getConnectionDefault().createStatement();

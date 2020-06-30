@@ -1,20 +1,20 @@
 package main.gui.Controller;
 
-// import from standard java
 import javax.swing.*;
 import java.awt.*;
 
-// import from my packages
 import main.gui.Constants.MyFont;
 
+// This class contains every `JTextArea` used by the main form
 public class TextArea {
+    // ==== Fields
     public JTextArea taInput = new JTextArea();
     public JTextArea taOutput = new JTextArea();
 
+    // ==== Constructor
+    // Default no arg constructor
     public TextArea() {
         super();
-//      tf_input.setPreferredSize(new Dimension(200,200));
-//      tf_output.setPreferredSize(new Dimension(200,200));
         taInput.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         taInput.setPreferredSize(taInput.getSize());
         taInput.setFont(MyFont.Monospaced);

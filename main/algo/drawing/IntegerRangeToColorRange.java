@@ -1,19 +1,19 @@
 package main.algo.drawing;
 
 import java.awt.Color;
-import java.util.Arrays;
-import java.util.Collections;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import java.util.Scanner;
-import java.awt.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.HashMap;
 
+// `IntegerRangeToColorRange` will tries to map an Integer range with a Color range
+// numbers of distinct integers will correspond with number of colors
+// Argument: int[] represents a list of integers you want to map
+// Returns: HashMap<Integer, java.awt.Color>, map a distinct Integer from int[] to a (supposedly) distinct Color
 public class IntegerRangeToColorRange {
     public static final float SATURATE = 1.0f;
     public static final float BRIGHTNESS = 1.0f;
@@ -36,31 +36,4 @@ public class IntegerRangeToColorRange {
 
         return hashMap;
     }
-
-    // --- TESTING
-    /*
-    public static void main(String s[]) {
-        IntegerRangeToColorRange.convertRange(new int[] {1 ,1 ,6 ,1 ,2 ,5 ,2 ,1 ,2 ,1 ,5 ,4 ,3 ,2 ,1});
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        frame.setSize(200, 200);
-        JPanel panel = new JPanel();
-        //float col = .45f;
-        //panel.setBackground(HueToColor(col));
-        //System.out.println(HueToColor(col));
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setVisible(true);
-
-        while(true) {
-            Scanner sc = new Scanner(System.in);
-            float f = sc.nextFloat();
-            //panel.setBackground(HueToColor(f));
-            //System.out.println(HueToColor(f));
-            panel.setBackground(Color.getHSBColor(f, 0.7f, 1f));
-            System.out.println(Color.getHSBColor(f, 0.7f, 1f));
-            panel.repaint();
-        }
-    }
-    */
 }

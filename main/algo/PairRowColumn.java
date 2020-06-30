@@ -1,5 +1,7 @@
 package main.algo;
 
+// This class is simply a pair of integers
+// Represents XY-coordinates
 public class PairRowColumn {
     int r;
     int c;

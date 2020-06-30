@@ -11,11 +11,19 @@ import main.gui.Event.*;
 
 import main.algo.ImageCentralPixels;
 
+// This class is the ultimate class, where the magic happens,
+// In other words, when the program runs, this class gets called first
 public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi, PanelCenter {
+    // ==== Fields
+    // `mainFrame` is the main interface allowing user to interact with every components so far
     public JFrame mainFrame = new JFrame("Center of Attention");
+    // `img` is the `main.algo.Image` object
     public ImageCentralPixels img = null;
+    // `canvas` is the image displayer in the middle
     public Canvas canvas = null;
 
+    // ==== Constructor
+    // Default no args constructor
     public Frame() {
         super();
         mainFrame.setSize(MyHeightWidth.W, MyHeightWidth.H);
@@ -23,17 +31,18 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setLayout(new BorderLayout(10, 5));
 
-        // -- add JMenubar vào trong frame
+        // Decided not to use JMenuBar
         // mainFrame.setJMenuBar(add());
 
         mainFrame.add(BorderLayout.CENTER, panelCenter());
         mainFrame.add(BorderLayout.WEST, panelNishi());
         mainFrame.add(BorderLayout.EAST, panelHigashi());
-        // mainFrame.pack();
         mainFrame.setMinimumSize(new Dimension(700, 450));
         mainFrame.setVisible(true);
     }
-
+    
+    // ==== Override methods
+    // The left panel, Function buttons and such,...
     @Override
     public JPanel panelNishi() {
         JPanel pnlNishi = new JPanel();
@@ -41,28 +50,27 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         pnlNishi.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.ipady = 15;
-        //c.ipadx = 30;
         c.insets = new Insets(10, 10, 10, 10);
-        //
+
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
         pnlNishi.add(ProblemPrompt, c);
         ProblemPromptButtonEvent objProblemPrompt = new ProblemPromptButtonEvent(this);
         ProblemPrompt.addActionListener(objProblemPrompt);
-        //
+
         c.gridx = 0;
         c.gridy = 1;
         pnlNishi.add(Start, c);
         StartButtonEvent sbe = new StartButtonEvent(this);
         Start.addActionListener(sbe);
-        //
+
         c.gridx = 0;
         c.gridy = 2;
         pnlNishi.add(History, c);
         HistoryButtonEvent objHistory = new HistoryButtonEvent(this);
         History.addActionListener(objHistory);
-        //
+
         c.weighty = 0.5;
         c.anchor = GridBagConstraints.LAST_LINE_END;
         c.gridx = 0;
@@ -75,6 +83,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         return pnlNishi;
     }
 
+    // The right panel, INPUT OUTPUT boxes,...
     @Override
     public JPanel panelHigashi() {
         JPanel pnlHigashi = new JPanel();
@@ -141,6 +150,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         return pnlHigashi;
     }
 
+    // Menubar method, not used
     @Override
     public JMenuBar add() {
         JMenuBar menuBar = new JMenuBar();
@@ -149,6 +159,7 @@ public class Frame extends Button implements MyMenuBar, PanelNishi, PanelHigashi
         return menuBar;
     }
 
+    // The middle panel, contains canvas
     @Override
     public JPanel panelCenter() {
         JPanel canvasContainer = new JPanel();

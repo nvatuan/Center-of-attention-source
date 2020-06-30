@@ -7,12 +7,16 @@ import java.awt.event.ActionListener;
 import main.gui.Controller.Frame;
 import main.algo.ImageCentralPixels;
 
+// This class handles event when START Button is pressed
 public class StartButtonEvent implements ActionListener {
+    // ==== Construstor
+    // Pass a `main.gui.Controller.Frame` object to access data
     public Frame frame;
     public StartButtonEvent(Frame source) {
         this.frame = source;
     }
 
+    // ==== Overriden methods
     @Override
     public void actionPerformed(ActionEvent e) {
         String str = frame.taInput.getText();
@@ -40,17 +44,17 @@ public class StartButtonEvent implements ActionListener {
                 if (i + 1 < result.length) resultString += " ";
             }
             resultString += "}";
-        } catch (NumberFormatException nfex) {
+
+        } catch (NumberFormatException nfex) { // Non-number characters detected exception
             JOptionPane.showMessageDialog(null, "Dữ liệu vào chỉ chấp nhận các số nguyên, các ký tự khoảng trống và các ký tự xuống dòng.", "ERROR: Ký tự không hợp lệ trong INPUT", JOptionPane.ERROR_MESSAGE);
-            //System.out.println(frame.mainFrame.getSize());
-        } catch (IllegalArgumentException iaex) {
+        } catch (IllegalArgumentException iaex) { // Non-integer detected
             JOptionPane.showMessageDialog(null, "Hai số nguyên đầu (Width và Height) phải là số nguyên dương.", "ERROR: Giá trị không hợp lệ trong INPUT", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
+        } catch (Exception ex) { // Unexpeceted exception
             ex.printStackTrace();
-        } finally {
+        } finally { // Write text to OUTPUT text area
             frame.taOutput.setText(resultString);
         }
-
+        // Don't `repaint()` when failed to parse input
         frame.canvas.repaint();
     }
 }

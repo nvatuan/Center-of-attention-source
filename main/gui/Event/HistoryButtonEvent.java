@@ -23,17 +23,22 @@ import java.io.ObjectOutputStream;
 import main.algo.ImageCentralPixels;
 import main.database.Util;
 
+// This class handles event for when `History` button is pressed
 public class HistoryButtonEvent implements ActionListener {
+    // ==== Fields
     public main.gui.Controller.Frame obj;
     public JTable historyTable = new JTable();
     public JScrollPane historyScroll = new JScrollPane(historyTable);
     
     public SqlHandler handler = null;
 
+    // ==== Constructor
+    // A constructor passes a `main.gui.Controller.Frame` object
     public HistoryButtonEvent(main.gui.Controller.Frame frame) {
         this.obj = frame;
     }
 
+    // ==== Overriden method
     @Override
     public void actionPerformed(ActionEvent e) {
         historyTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

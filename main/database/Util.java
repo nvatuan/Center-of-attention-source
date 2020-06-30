@@ -9,11 +9,17 @@ import java.sql.ResultSetMetaData;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
+// This class contains static methods that help get Connection to MySQL Database
+// Also contains a ResultSet to DefaultDataTable converter
 public class Util {
+    // This method will try to get `Connection` to MySQL DB with default args
+    // database = 'javabase', username = 'root', password = 'root'
     public static Connection getConnectionDefault() throws SQLException {
         return getConnectionWithParams("javabase", "root", "root");
     }
     
+    // This method accepts 3 Strings: database, user, pass
+    // Will attempt to get Connection using provided credentials
     public static Connection getConnectionWithParams(String database, String user, String pass) throws SQLException {
         String url = "jdbc:mysql://localhost:3306/" + database;
         String username = user;
@@ -30,6 +36,8 @@ public class Util {
         }
     }
 
+    // This is a converter from ResultSet to DefaultTableModel
+    // Helps pour data from DB to a JTable
     public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
         ResultSetMetaData metaData = rs.getMetaData();
 
