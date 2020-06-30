@@ -25,7 +25,11 @@ import java.awt.datatransfer.StringSelection;
 
 import main.gui.Constants.MyFont;
 
+// This class contains static methods to construct a HelpDialog
+// a Help Dialog is popup when the button with a question mark next
+// to INPUT/OUTPUT label is pressed
 public class MyHelpDialog {
+    // Construct an empty body for Help Dialog
     private static JDialog constructNewDialog(String title) {
         JDialog dialog = new JDialog();
         dialog.setTitle(title);
@@ -36,6 +40,7 @@ public class MyHelpDialog {
         return dialog;
     }
 
+    // Help Dialog about INPUT section
     public static JDialog getHelpInput() {
         JDialog dialog = constructNewDialog("Help: Định dạng INPUT");
         dialog.setLayout(new BorderLayout());
@@ -80,6 +85,7 @@ public class MyHelpDialog {
         return dialog;
     }    
 
+    // Help Dialog about OUTPUT section
     public static JDialog getHelpOutput() {
         JDialog dialog = constructNewDialog("Help: Định dạng OUTPUT");
         dialog.setLayout(new BorderLayout());

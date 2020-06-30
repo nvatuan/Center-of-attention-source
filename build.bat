@@ -1,6 +1,5 @@
 javac -encoding utf-8 -d out main/algo/*.java
 
-javac -encoding utf-8 -d out main/gui/ComponentDesign/*.java
 javac -encoding utf-8 -d out main/gui/Constants/*.java
 javac -encoding utf-8 -d out main/gui/Controller/*.java
 javac -encoding utf-8 -d out main/gui/Controller/panel/*.java
