@@ -31,11 +31,6 @@ public class Button extends Label {
         OutputHelp.setFocusPainted(false);
         OutputCopy.setFocusPainted(false);
 
-        Start.setBorder(BorderFactory.createRaisedBevelBorder());
-        ProblemPrompt.setBorder(BorderFactory.createRaisedBevelBorder());
-        History.setBorder(BorderFactory.createRaisedBevelBorder());
-        About.setBorder(BorderFactory.createRaisedBevelBorder());
-
         InputHelp.setActionCommand("Input?");
         OutputHelp.setActionCommand("Output?");
 

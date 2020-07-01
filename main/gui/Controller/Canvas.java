@@ -43,16 +43,20 @@ public class Canvas extends JPanel {
         if (frame.img == null) {
             // -- If no (when just start-up), it shall draw a default image, here it draws `img/Cover.jpg`
             // Get `java.awt.Image` object
-            ImageIcon icon = new ImageIcon(getClass().getResource("../../img/Cover.jpg"));
-            Image img = icon.getImage();
+            try {
+                //System.out.println(Canvas.class.getClassLoader().getResource("main/img/Cover.jpg"));
+                ImageIcon icon = new ImageIcon(Canvas.class.getClassLoader().getResource("main/img/Cover.jpg"));
+                Image img = icon.getImage();
 
-            // Do some math to scale that image
-            int edge = Math.min(this.getHeight(), this.getWidth());
-            int startW = (this.getWidth() - edge)/2;
-            int startH = (this.getHeight() - edge)/2;
+                // Do some math to scale that image
+                int edge = Math.min(this.getHeight(), this.getWidth());
+                int startW = (this.getWidth() - edge)/2;
+                int startH = (this.getHeight() - edge)/2;
 
-            // Draw that image to this canvas
-            g.drawImage(img, startW, startH, edge, edge, null);
+                // Draw that image to this canvas
+                g.drawImage(img, startW, startH, edge, edge, null);
+            } catch (Exception ex) {
+            }
 
         } else {
             // -- If yes (a valid test has been run), it tries to draw the colors grid represent that input
