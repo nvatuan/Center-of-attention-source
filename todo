@@ -1,0 +1,9 @@
+[X] Rework INPUT, OUTPUT section
+    | + [INPUT][?] two buttons, put them in a container, NORTH
+    | + [TEXTAREA] one text area, CENTER
+    | + [PASTE BT] one buttons, put them in a container, SOUTH
+    | Change layout type?
+[X] Rewrite About Us section
+[X] Rewrite Problem Prompt section
+[X] Work on INPUT/OUTPUT Help button
+[X] Rework Help menu, Won't work on it

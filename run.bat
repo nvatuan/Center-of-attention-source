@@ -1,0 +1,1 @@
+java -cp out;main/lib/mysql-connector-java-5.1.49.jar; main.runner
