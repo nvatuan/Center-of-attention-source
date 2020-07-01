@@ -43,6 +43,8 @@ public class Canvas extends JPanel {
         if (frame.img == null) {
             // -- If no (when just start-up), it shall draw a default image, here it draws `img/Cover.jpg`
             // Get `java.awt.Image` object
+
+            // Tries to load default Cover image, if fails, canvas will be plain black
             try {
                 //System.out.println(Canvas.class.getClassLoader().getResource("main/img/Cover.jpg"));
                 ImageIcon icon = new ImageIcon(Canvas.class.getClassLoader().getResource("main/img/Cover.jpg"));
