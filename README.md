@@ -1,9 +1,9 @@
 # Centre-of-Attention-source
 
-Đây là repository của chúng tôi cho đồ án 2 người. Đồ án này có mục đích thử khả năng giải quyết bài toán, đưa ra giải thuật, lập trình thuật toán, giao diện sử dụng Java, sử dụng cơ sở dữ liệu.
+This is a 2-man project, with the purpose of applying Java GUI programming and Database programming. It has to solve a programming problem, which will be described below.
 
-### Bài toán giải quyết
-#### Nguyên văn
+### The problem
+#### Original text
 "For this project, we're given an image in which some object of interest (e.g. a face, or a license plate, or an aircraft) appears as a large block of contiguous pixels all of the same colour. (Probably some image-processing has already occurred to achieve this, but we needn't worry about that.) We want to find the centre of the object in the image.
 
 We'll do this by finding which pixels of the given colour have maximum depth. The depth of a pixel P is the minimum number of steps (up, down, left, or right) you have to take from P to reach either a pixel of a different colour or the edge of the image.
@@ -38,30 +38,34 @@ Note 1. The final test in the suite (Big_Test) is a 16-megapixel image (4 megapi
 
 Note 2. The data in an Image object should not be assumed to be constant after instantiation. The test suite frequently modifies images and then re-tests them."
 
-#### Tóm tắt
-Cho một mảng `A[][]` hai chiều chỉ chứa toàn số nguyên. Định nghĩa "`max_depth` của một pixel" là `d(x, y)` là khoảng cách Manhattan ngắn nhất từ phần tử `[x][y]` đến:
-- Hoặc là, một ô `[u][v]` sao cho `A[x][y] ≠ A[u][v]`,
-- Hoặc là, ngoài biên của mảng `A[][]`
+#### Problem summarry
+Given a two dimensions matrix `A[][]` contains only integers. Define "`max_depth` of a pixel" as `d(x, y)`, is the shortest Manhattan distance from tile `[x][y]` to:
+- Either, another tile `[u][v]` so that `A[x][y] ≠ A[u][v]`, (in other words, different colored pixels)
+- Or either, just right outside the border of `A[][]`
 
-Cho một số nguyên k. Tìm tất cả các ô `[x][y]` sao cho `d(x,y)` là lớn nhất trong tất cả các ô có `A[x][y] = k`.
+Given an integer `k`. Find all tiles `[x][y]` so that `d(x,y)` is the greatest among all `A[x][y]` equals `k`.
 
-
-### Demo
-#### Giao diện
+### Demonstration
+#### User Interface
 Gồm 3 khu vực, bên trái là khu vực `Functions` chứa đa số các nút thực hiện chức năng chính, bên phải là khu vực `Input/Output` là nơi mà chương trình sẽ nhận và trả dữ liệu, ở giữa là khu vực `Canvas` là nơi mà chương trình sẽ vẽ đồ họa `Image` được mô phỏng tại ô `Input`, chương trình sẽ vẽ khi nút `Start` được bấm.
 
-#### Ảnh
-Khi vừa mới chạy chương trình:
+Consists of 3 area:
+- The leftmost is called "Functions". Contains mostly buttons that will do what they are meant to do (based on the text on the button)
+- The rightmost is called "Input/Output". This is where the program will read in the data, and output back results.
+- The middle part is called "Canvas". This is where our program will produe an image, based on what the user has inputted (the `A[][]` matrix). Colors are randomly picked so that no different numbers has the same colors.
+
+#### Images
+##### When you just launch the program
 ![image](https://user-images.githubusercontent.com/24392632/85954634-22a0e900-b9a3-11ea-9e67-d9b745a03f0d.png)
 
-Chạy một test nhỏ demo chức năng vẽ hình
+##### A small test to demonstrate image rendering
 ![image](https://user-images.githubusercontent.com/24392632/85954969-a2c84e00-b9a5-11ea-9b0d-810b3be62f5d.png)
 
-Chạy Test to hơn chút
+##### A slightly bigger test
 ![image](https://user-images.githubusercontent.com/24392632/85954644-35b3b900-b9a3-11ea-8a0c-44b433a93d40.png)
 
-Chạy hai Test kích cỡ trung bình (200x200)
+##### A medium-sized test (200x200)
 ![image](https://user-images.githubusercontent.com/24392632/85954663-58de6880-b9a3-11ea-830f-0686e488667a.png)
 ![image](https://user-images.githubusercontent.com/24392632/85954727-a8249900-b9a3-11ea-8e24-60b11bf68957.png)
 
-Test lớn (khoảng 1000x1000) khiến `BufferedImage` của Java sử dụng bộ nhớ cao và thời gian chạy lâu, nên không có hình ảnh phần này.
+Large test (around 1000x1000) makes Java's `BufferedImage` uses up huge memory and long allocate time so unfortunately there will be no images for larger testcases.
