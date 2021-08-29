@@ -53,7 +53,7 @@ Given an integer `k`. Find all tiles `[x][y]` so that `d(x,y)` is the greatest a
 ## The Application
 The application is written purely in Java, and make use of Java's extensive framework/library, namely the following:
 * Swing, AWT
-* JDBC Connector/J for MySQL 
+* JDBC for MySQL 
  
 ### User Interface
 Consists of 3 area:
@@ -64,20 +64,27 @@ Consists of 3 area:
 ### Save/Load
 The current version of the application supports Save/Load via a MySQL Database. Just hit the "Dữ liệu Database" (Database Data) button on the left to see the screen for the option.
 
-To use this feature, you will need to configurate your MySQL database as follow:
-- Make sure MySQL is running on default port `3306`, with user `root` and password `root` (I know it's bad but this is hardcoded. Sorry!)
-- Create a database and table for storing with the following statements:
-```mysql
-CREATE DATABASE javabase;
-USE javabase;
-CREATE TABLE tb (id INT PRIMARY KEY AUTO_INCREMENT, serial BLOB, created DATETIME);
-```
-And you should be set. The database control panel has 3 options:
+To use this feature, you will need to configurate your MySQL database as described in the **Installation** section. The database control panel has 3 options:
 * Clone Input (of the selected row)
 * Delete (the selected row)
 * Save Current (Input to database)
 The current version does not include Save/Load via files. (Again, Sorry! Using a DBMS is an overkill, but it is a requirement)
- 
+
+## Installation
+* First, download the repository.
+* If you are planning to use the Save/Load feature, next step is to install MySQL. You can skip this step if you don't need to use it.
+  1. Make sure MySQL is running on default port `3306`, with user `root` and password `root` (I know it's bad but this is hardcoded. Sorry!)
+  2. Create the database:
+    - Recover the database by using the `dump.sql` or,
+    - Create a database and table for storing with the following statements:
+      ```mysql
+      CREATE DATABASE javabase;
+      USE javabase;
+      CREATE TABLE tb (id INT PRIMARY KEY AUTO_INCREMENT, serial BLOB, created DATETIME);
+      ```
+* Then, if you are on Windows, you can run `build-run.bat` to automatically build the project then run it. Afterward, you only need to run `run.bat`.
+* If you are on Linux or Mac, you will have to write your bash version of the script.
+
 ## Screenshots
 ### When you just launch the program
 ![image](https://user-images.githubusercontent.com/24392632/85954634-22a0e900-b9a3-11ea-9e67-d9b745a03f0d.png)
