@@ -75,13 +75,13 @@ The current version does not include Save/Load via files. (Again, Sorry! Using a
 * If you are planning to use the Save/Load feature, next step is to install MySQL. You can skip this step if you don't need to use it.
   1. Make sure MySQL is running on default port `3306`, with user `root` and password `root` (I know it's bad but this is hardcoded. Sorry!)
   2. Create the database:
-    - Recover the database by using the `dump.sql` or,
-    - Create a database and table for storing with the following statements:
-      ```mysql
-      CREATE DATABASE javabase;
-      USE javabase;
-      CREATE TABLE tb (id INT PRIMARY KEY AUTO_INCREMENT, serial BLOB, created DATETIME);
-      ```
+     - Recover the database by using the `dump.sql` or,
+     - Create a database and table for storing with the following statements:
+     ```mysql
+     CREATE DATABASE javabase;
+     USE javabase;
+     CREATE TABLE tb (id INT PRIMARY KEY AUTO_INCREMENT, serial BLOB, created DATETIME);
+     ```
 * Then, if you are on Windows, you can run `build-run.bat` to automatically build the project then run it. Afterward, you only need to run `run.bat`.
 * If you are on Linux or Mac, you will have to write your bash version of the script.
 
